@@ -14,27 +14,46 @@ import CreateEvent from "./pages/CreateEvent.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const router = createBrowserRouter([
+const arrayRouter = [
   {
-    path: "/",
-    element: <Home />,
+    path: "/login",
+    element: <Login />,
   },
-]);
+  {
+    path: "/Event",
+    element: <Event />,
+  },
+  {
+    path: "/Booking",
+    element: <Booking />,
+  },
+  {
+    path: "/Payment",
+    element: <Payment />,
+  },
+  {
+    path: "/Profile",
+    element: <Profile />,
+  },
+  {
+    path: "/MyWhislist",
+    element: <MyWhislist />,
+  },
+  {
+    path: "/MyBooking",
+    element: <MyBooking />,
+  },
+  {
+    path: "/CreateEvent",
+    element: <CreateEvent />,
+  },
+];
+
+const router = createBrowserRouter(arrayRouter);
+
 function App() {
   // component
-  return (
-    <div>
-      {/* <Navbar /> */}
-      {/* <RouterProvider router={router} /> */}
-      <Profile />
-      <ChangePassword />
-      {/* <Footer /> */}
-      <MyWhislist />
-      <MyBooking />
-      <CreateEvent />
-      <Home />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

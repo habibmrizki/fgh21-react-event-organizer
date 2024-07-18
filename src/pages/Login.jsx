@@ -4,31 +4,46 @@ import logoWetick from "../assets/img/logo-wetick.png";
 import logoEye from "../assets/img/logo-eye.png";
 import goggle from "../assets/img/google.png";
 import facebook from "../assets/img/facebook.png";
+import Eye from "../assets/img/logo-eye.png";
+import { useNavigate } from "react-router-dom";
+import react from "react";
 
 function Login() {
-  // component
-  // const navigate = useNavigate();
-  // function processLogin(e) {
-  //   e.preventDefault();
-  //   const username = e.target.username.value;
-  //   const email = e.target.email.value;
-  //   const password = e.target.password.value;
-  //   if (
-  //     username === "Habib" &&
-  //     email === "Habib@gmail.com" &&
-  //     password === "1234"
-  //   ) {
-  //     navigate;
-  //   } else username === "" && email === "" && password === "";
-  //   alert("Enter your account to Login");
-  // }
+  const navigate = useNavigate();
+  function processLogin(e) {
+    e.preventDefault();
+    const username = e.target.username.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    if (
+      username === "Habib" &&
+      email === "Habib@gmail.com" &&
+      password === "1234"
+    ) {
+      navigate("/Home");
+    } else username === "" && email === "" && password === "";
+    alert("Enter your account to Login");
+  }
+
+  let [pass, setPass] = React.useState("password");
+  function revealPassword() {
+    if (pass === "password") {
+      setPass("test");
+    } else {
+      setPass("password");
+    }
+  }
+
   return (
     <div className="flex h-[100vh] ">
       <div className="flex w-7/12 bg-[#3366ff]  justify-center items-center">
         <img src={logoLeftLogin} alt="" />
       </div>
       <div className="flex w-5/12 justify-center items-center">
-        <form className="flex max-w-xs w-full flex-col gap-6">
+        <form
+          onSubmit={processLogin}
+          className="flex max-w-xs w-full flex-col gap-6"
+        >
           <div>
             <img src={logoWetick} alt="" />
           </div>
@@ -53,10 +68,13 @@ function Login() {
           <div className="flex h-[55px] rounded-2xl border-neutral-500">
             <input
               className="w-full h-full px-6 text-sm bg-[white] box-border border rounded-2xl overflow-hidden"
-              type="password"
+              type={pass}
               placeholder="Password"
               name="password"
             />
+            <button type="button" onClick={revealPassword}>
+              <img src={Eye} alt="" />
+            </button>
           </div>
           <div>
             <div className="text-right ">
