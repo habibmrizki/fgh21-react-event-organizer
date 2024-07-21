@@ -1,11 +1,10 @@
 import React from "react";
-// import logoWetick from "../assets/img/logo-wetick.png";
 import LogoBlurWetick from "../assets/img/logo-blur-wetick.png";
-import { Link } from "react-router-dom";
-import SignUp from "../pages/SignUp";
+import Avatar from "../assets/img/Avatar.svg";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
-function navbar() {
+function App() {
   // component
   const [navbar, setNavbar] = React.useState(true);
   function buttonMenu() {
@@ -16,8 +15,8 @@ function navbar() {
     }
   }
   return (
-    <nav className="w-full flex justify-between md:flex-row flex-col items-center bg-[#ffffff] py-[1.4rem] px-[5%] inset-x-0 top-0 font-semibold md:w-full gap-[15px] md:gap-[0] ">
-      <div className="flex justify-between items-center w-full md:w-[10%] ">
+    <nav className="flex justify-between items-center bg-[#ffffff] py-[1.4rem] px-[5%] inset-x-0 top-0 font-bold  md:w-full gap-[28px] md:gap-[0] flex-col md:flex-row">
+      <div className="flex justify-between items-center w-full md:w-[10%]">
         <div className="text-2xl">
           <a href="#" className="flex flex-row justify-center items-center">
             <img src={LogoBlurWetick} alt="logo-witeck" />
@@ -36,15 +35,13 @@ function navbar() {
             : "md:flex gap-6 hidden "
         }
       >
-        <div className="flex gap-[30px] items-center flex-col md:flex-row w-full">
+        <div className="flex gap-[35px] md:gap-[50px] items-center flex-col md:flex-row">
           <div className="text-sm tracking-[1px] text-[#3366FF] font-semibold ">
             <Link to="/">Home</Link>
           </div>
-          <Link to="" href="#">
-            <div className="text-sm tracking-[1px] font-semibold ">
-              Create Event
-            </div>
-          </Link>
+          <div className="text-sm tracking-[1px] font-semibold ">
+            <a href="#">Create Event</a>
+          </div>
           <a href="#">
             <div className="text-sm tracking-[1px] font-semibold ">
               Location
@@ -55,29 +52,27 @@ function navbar() {
       <div
         className={
           navbar
-            ? "flex flex-col items-center md:flex-row gap-6 w-full md:w-auto"
+            ? "flex flex-col justify-between items-center md:flex-row gap-6 w-full md:w-auto"
             : "md:flex gap-6 hidden "
         }
       >
-        <div className="flex gap-[30px] w-full px-0 py-0 md:w-[300px] flex-col items-center md:flex-row mt-[25px] md:mt-[0]">
-          <button
-            type="button"
-            className=" md:w-[100px] w-full  rounded-lg "
-            id="to-login"
-          >
-            <Link to="/Login">Login</Link>
-          </button>
-          <button
-            type="button"
-            className="w-full h-[40px]  rounded-lg bg-[#3366ff] text-[#ffffff]"
-            id="to-signup"
-          >
-            <Link to="/SignUp">Sign Up</Link>
-          </button>
-        </div>
+        <Link to="/Profile">
+          <div className="flex items-center gap-4 justify-center ">
+            <button className="h-[55px] w-[55px] flex justify-center items-center rounded-full overflow-hidden border-4 border-t-blue-500 border-b-violet-700 border-l-violet-500 border-e-blue-400">
+              <img
+                src={Avatar}
+                alt=""
+                className="h-[44px] w-[44px] rounded-full"
+              />
+            </button>
+            <button className="text-[#373A42] font-semibold text-sm">
+              Jhon Tomson
+            </button>
+          </div>
+        </Link>
       </div>
     </nav>
   );
 }
 
-export default navbar;
+export default App;

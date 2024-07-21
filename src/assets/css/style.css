@@ -8,3 +8,14 @@ body {
   background-color: #f4f7ff;
   font-family: "Poppins";
 }
+
+::-ms-reveal {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-color: #ffffff;
+    font-family: "Poppins";
+  }
+}

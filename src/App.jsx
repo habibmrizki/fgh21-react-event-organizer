@@ -1,5 +1,6 @@
 import React from "react";
 import Login from "./pages/Login.jsx";
+import SignUp from "./pages/SignUp.jsx";
 import Home from "./pages/Home.jsx";
 import Event from "./pages/Event.jsx";
 import Navbar from "./components/Navbar.jsx";
@@ -11,6 +12,8 @@ import ChangePassword from "./pages/ChangePassword.jsx";
 import MyBooking from "./pages/MyBooking.jsx";
 import MyWhislist from "./pages/MyWhislist.jsx";
 import CreateEvent from "./pages/CreateEvent.jsx";
+import EventHome from "./components/EventHome.jsx";
+import ForgotPassword from "./pages/ForgotPassword.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -18,6 +21,10 @@ const arrayRouter = [
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/",
+    element: <Home />,
   },
   {
     path: "/Event",
@@ -46,6 +53,22 @@ const arrayRouter = [
   {
     path: "/CreateEvent",
     element: <CreateEvent />,
+  },
+  {
+    path: "/ChangePassword",
+    element: <ChangePassword />,
+  },
+  {
+    path: "/EventHome",
+    element: <EventHome />,
+  },
+  {
+    path: "/SignUp",
+    element: <SignUp />,
+  },
+  {
+    path: "/ForgotPassword",
+    element: <ForgotPassword />,
   },
 ];
 
