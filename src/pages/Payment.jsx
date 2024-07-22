@@ -88,7 +88,7 @@ function Payment() {
             </div>
           </form>
         </div>
-        <div className=" md:border-l-4 md:border-t-0 md:border-l-black w-full mt-[50px] md:mt-[0] border-t-4 border-t-black border-0">
+        <div className=" md:border-l-4 md:border-t-0 md:border-l-[#C1C5D040] w-full mt-[50px] md:mt-[0] border-t-4 border-t-[#C1C5D040] border-0">
           <div className=" md:pl-[100px] pl-[0] ">
             <div className="flex mb-[50px] font-bold text-[20px] mt-[30px] md:mt-[0]">
               Ticket Detail
@@ -113,9 +113,11 @@ function Payment() {
                 <div className="text-[#2e5de8] font-bold">$70</div>
               </div>
               <div>
-                <button className="text-[white] mt-[50px] bg-[#3366ff] rounded-[15px] w-full h-[55px]">
-                  Payment
-                </button>
+                <Link to="/MyBooking">
+                  <button className="text-[white] mt-[50px] bg-[#3366ff] rounded-[15px] w-full h-[55px]">
+                    Payment
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
