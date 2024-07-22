@@ -47,6 +47,38 @@ function SignUp() {
   //     }
   //   }
 
+  const navigate = useNavigate();
+  function processSignUp(e) {
+    e.preventDefault();
+    const username = e.target.fullname.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const confirmPassword = e.target.confirmPassword.value;
+    if (
+      username === "Habib" &&
+      email === "Habib@gmail.com" &&
+      password === "1234" &&
+      confirmPassword === "1234"
+    ) {
+      window.alert("Selamat login anda sukses!");
+      navigate("/");
+    } else {
+      username === "" &&
+        email === "" &&
+        password === "" &&
+        confirmPassword === "";
+      alert("Enter your account to Login");
+    }
+  }
+
+  let [pass, setPass] = React.useState("password");
+  function revealPasswordSignUp() {
+    if (pass === "password") {
+      setPass("test");
+    } else {
+      setPass("password");
+    }
+  }
   return (
     <div className="flex h-[100vh] ">
       <div className="md:flex w-7/12 bg-[#3366ff] hidden justify-center items-center">
@@ -54,7 +86,7 @@ function SignUp() {
       </div>
       <div className="flex w-full md:w-5/12 justify-center items-center ">
         <form
-          //   onSubmit={processSignUp}
+          onSubmit={processSignUp}
           className="flex max-w-xs w-full flex-col gap-[20px] "
         >
           <div>
@@ -72,7 +104,7 @@ function SignUp() {
               className="w-full h-full px-6 text-sm bg-[white] box-border border rounded-2xl overflow-hidden outline-none "
               type="text"
               placeholder="Full Name"
-              name="Full Name"
+              name="fullName"
             />
           </div>
           <div className="flex h-[55px] rounded-2xl border-neutral-500">
@@ -92,7 +124,7 @@ function SignUp() {
             />
             <button
               type="button"
-              //   onClick={revealPasswordSignUp}
+              onClick={revealPasswordSignUp}
               className="bg-[transparent] pr-[15px]"
             >
               <FaEye />
@@ -103,11 +135,11 @@ function SignUp() {
               className="w-full  px-6 text-sm  box-border rounded-2xl overflow-hidden outline-none ::-ms-reveal-none"
               type="password"
               placeholder="Confirm Password"
-              name="Confirm Password"
+              name="confirmPassword"
             />
             <button
               type="button"
-              //   onClick={revealPasswordSignUp}
+              onClick={revealPasswordSignUp}
               className="bg-[transparent] pr-[15px]"
             >
               <FaEye />
@@ -119,7 +151,7 @@ function SignUp() {
           </div>
           <div>
             <button
-              //   onSubmit={processSignUp}
+              onSubmit={processSignUp}
               className=" border-none rounded-lg w-full h-[55px] text-white bg-[#3366ff]"
             >
               Sign Up

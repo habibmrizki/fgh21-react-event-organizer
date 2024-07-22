@@ -13,9 +13,47 @@ import { FaRegHeart } from "react-icons/fa";
 import NavbarProfile from "../components/NavbarProfile";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
+import { FaPen } from "react-icons/fa";
+import { FaWallet } from "react-icons/fa";
+import { FaLockOpen } from "react-icons/fa6";
+import { FaBook } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import { FaGear } from "react-icons/fa6";
 
 function CreateEvent() {
   // component
+
+  // const [isPopupVisible, setIsPopupVisible] = useState(false);
+  // const popupRef = useRef(null);
+
+  // const setPopUp2 = () => setIsPopupVisible(true);
+  // const standBy = (event) => event.stopPropagation();
+
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (popupRef.current && !popupRef.current.contains(event.target)) {
+  //       setIsPopupVisible(false);
+  //     }
+  //   };
+  // });
+  function setPopUp() {
+    const PopUp = document.getElementById("popup");
+    ``;
+    PopUp.classList.toggle("hidden");
+  }
+  function standBy(e) {
+    e.stopPropagation();
+  }
+  function setPopUp2() {
+    PopUp.classList.toggle("hidden");
+  }
+
+  // formList.addEventListener("submit", function (e) {
+  //   e.preventDefault();
+  //   contentPopup.classList.remove("hide");
+  // });
+
   return (
     <div>
       <div>
@@ -35,44 +73,44 @@ function CreateEvent() {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col  font-bold text-[16px] gap-[30px]">
-                  <div className="flex flex-row gap-[20px]">
+                <div className="flex flex-col  font-bold text-[16px] gap-[30px] ">
+                  <div className="flex flex-row gap-[20px] items-center">
                     <Link to="/Profile">
                       <div className="flex flex-row gap-[20px]">
                         <div>
-                          <img src={IconProfile} alt="" />
+                          <FaUser />
                         </div>
                         <div className="text-[#373A42]">Profile</div>
                       </div>
                     </Link>
                   </div>
-                  <div className="flex flex-row gap-[20px] pl-[43px]">
+                  <div className="flex flex-row gap-[20px] pl-[43px] items-center">
                     <div>
-                      <img src={WalletCard} alt="" />
+                      <FaWallet />
                     </div>
                     <div className="text-[#373A42]">Card</div>
                   </div>
-                  <div className="flex flex-row gap-[20px] pl-[43px]">
+                  <div className="flex flex-row gap-[20px] pl-[43px] items-center">
                     <Link to="/Profile">
                       <div className="flex flex-row gap-[20px]">
                         <div>
-                          <img src={Edit} alt="" />
+                          <FaPen />
                         </div>
                         <div className="text-[#373A42]">Edit Profile</div>
                       </div>
                     </Link>
                   </div>
-                  <div className="flex flex-row gap-[20px] pl-[43px]">
+                  <div className="flex flex-row gap-[20px] pl-[43px] items-center">
                     <Link to="/ChangePassword">
                       <div className="flex flex-row gap-[20px]">
                         <div>
-                          <img src={ChangePassword} alt="" />
+                          <FaLockOpen />
                         </div>
                         <div className="text-[#373A42]">Change Password</div>
                       </div>
                     </Link>
                   </div>
-                  <div className="flex flex-row gap-[20px]">
+                  <div className="flex flex-row gap-[20px] items-center">
                     <a href="#" className="flex flex-row gap-[20px]">
                       <div>
                         <img src={CreateEventBlue} alt="" />
@@ -80,33 +118,33 @@ function CreateEvent() {
                       <div className="text-[#3366ff]">Create Event</div>
                     </a>
                   </div>
-                  <div className="flex flex-row gap-[20px]">
+                  <div className="flex flex-row gap-[20px] items-center">
                     <Link to="/MyBooking">
                       <div className="flex flex-row gap-[20px]">
                         <div>
-                          <img src={Booking} alt="" />
+                          <FaBook />
                         </div>
                         <div className="text-[#373A42]">My Booking</div>
                       </div>
                     </Link>
                   </div>
-                  <div className="flex flex-row gap-[20px]">
+                  <div className="flex flex-row gap-[20px] items-center">
                     <Link to="/MyWhislist">
                       <div className="flex flex-row gap-[20px]">
                         <div>
-                          <img src={Whislist} alt="" />
+                          <FaHeart />
                         </div>
                         <div className="text-[#373A42]">My Whislist</div>
                       </div>
                     </Link>
                   </div>
-                  <div className="flex flex-row gap-[20px]">
+                  <div className="flex flex-row gap-[20px] items-center">
                     <div>
-                      <img src={Setting} alt="" />
+                      <FaGear />
                     </div>
                     <div className="text-[#373A42]">Setting</div>
                   </div>
-                  <div className="flex flex-row  ">
+                  <div className="flex flex-row items-center ">
                     <Link to="/Login">
                       <div className="flex flex-row  gap-[20px]">
                         <div>
@@ -126,7 +164,13 @@ function CreateEvent() {
                     Manage Event
                   </div>
                   <div className="bg-[#eaf1ff] w-[125px] h-[50px] flex items-center justify-center rounded-[15px]">
-                    <div className="text-[#2e5de8] font-medium">Create</div>
+                    <button
+                      type="submit"
+                      onClick={setPopUp}
+                      className="text-[#2e5de8] font-medium"
+                    >
+                      Create
+                    </button>
                   </div>
                 </div>
                 <div className="flex flex-col gap-[20px] p-[30px] ">
@@ -250,8 +294,94 @@ function CreateEvent() {
               </div>
             </div>
           </div>
+          <Footer />
+          <div
+            onClick={setPopUp2}
+            className="bg-[#0000007e] absolute top-0 hidden w-full"
+            id="popup"
+          >
+            <div
+              onClick={standBy}
+              className="bg-[#ffff] rounded-3xl p-4 m-8 md:p-20 md:m-20"
+            >
+              <div className="font-bold text-2xl mb-10">Update Event</div>
+              <form className="flex flex-col gap-2 md:gap-10">
+                <div className="flex flex-col md:flex-row items-center gap-12">
+                  <div className="flex-1 flex flex-col gap-4">
+                    <label htmlFor="">Name</label>
+                    <input
+                      className="border p-5 w-full mr-10 rounded-xl"
+                      type="text"
+                      placeholder="Input name event..."
+                    />
+                  </div>
+                  <div className="flex-1 flex flex-col gap-4">
+                    <label htmlFor="">Category</label>
+                    <input
+                      className="border p-5 w-full mr-10 rounded-xl"
+                      type="text"
+                      placeholder="Select Category"
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col md:flex-row items-center gap-12">
+                  <div className="flex-1 flex flex-col gap-4">
+                    <label htmlFor="">Location</label>
+                    <input
+                      className="border p-5 w-full mr-10 rounded-xl"
+                      type="text"
+                      placeholder="Select Location"
+                    />
+                  </div>
+                  <div className="flex-1 flex flex-col gap-4">
+                    <label htmlFor="">Date/Time Show</label>
+                    <input
+                      className="border p-5 w-full mr-10 rounded-xl"
+                      type="text"
+                      placeholder="01/01/2022"
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col md:flex-row items-center gap-12">
+                  <div className="flex-1 flex flex-col gap-4">
+                    <label htmlFor="">Price</label>
+                    <input
+                      className="border p-5 w-full mr-10 rounded-xl"
+                      type="text"
+                      placeholder="Input Price ..."
+                    />
+                  </div>
+                  <div className="flex-1 flex flex-col gap-4">
+                    <label htmlFor="">Image</label>
+                    <input
+                      className="border p-5 w-full mr-10 rounded-xl"
+                      type="text"
+                      placeholder="Choose File ..."
+                    />
+                  </div>
+                </div>
+                <div className="flex items-center gap-12">
+                  <div className="flex-1 flex flex-col gap-4">
+                    <label htmlFor="">Detail</label>
+                    <input
+                      className="border p-5 w-full mr-10 rounded-xl"
+                      type="text"
+                      placeholder="Input Details"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <button
+                    className="w-full py-[16px] px-110px] text-[#ffff] font-semibold text-[16px] rounded-[15px] bg-[#3366ff]"
+                    type="submit"
+                  >
+                    Save
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        <Footer />
       </div>
     </div>
   );

@@ -13,6 +13,13 @@ import { FaChevronDown } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import NavbarProfile from "../components/NavbarProfile";
 import Footer from "../components/Footer";
+import { FaUser } from "react-icons/fa";
+import { FaPen } from "react-icons/fa";
+import { FaWallet } from "react-icons/fa";
+import { FaLockOpen } from "react-icons/fa6";
+import { FaBook } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import { FaGear } from "react-icons/fa6";
 
 function ChangePasswordPage() {
   // component
@@ -34,12 +41,12 @@ function ChangePasswordPage() {
               </div>
             </div>
             <div className="flex flex-col gap-[30px] font-bold">
-              <div className="flex flex-col gap-[30px] font-bold text-[16px] gap-[30px]">
+              <div className="flex flex-col  font-bold text-[16px] gap-[30px]">
                 <div className="flex flex-row gap-[20px]">
                   <Link to="/Profile">
                     <div className="flex flex-row gap-[20px]">
                       <div>
-                        <img src={IconProfile} alt="" />
+                        <FaUser />
                       </div>
                       <div className="text-[#373A42]">Profile</div>
                     </div>
@@ -47,7 +54,7 @@ function ChangePasswordPage() {
                 </div>
                 <div className="flex flex-row gap-[20px] pl-[43px]">
                   <div>
-                    <img src={WalletCard} alt="" />
+                    <FaWallet />
                   </div>
                   <div className="text-[#373A42]">Card</div>
                 </div>
@@ -55,7 +62,7 @@ function ChangePasswordPage() {
                   <Link to="/Profile">
                     <div className="flex flex-row gap-[20px]">
                       <div>
-                        <img src={Edit} alt="" />
+                        <FaPen />
                       </div>
                       <div className="text-[#373A42]">Edit Profile</div>
                     </div>
@@ -64,8 +71,8 @@ function ChangePasswordPage() {
                 <div className="flex flex-row gap-[20px] pl-[43px]">
                   <Link to="/ChangePassword">
                     <div className="flex flex-row gap-[20px]">
-                      <div>
-                        <img src={ChangePassword} alt="" />
+                      <div className="text-[#2e5de8]">
+                        <FaLockOpen />
                       </div>
                       <div className="text-[#2e5de8]">Change Password</div>
                     </div>
@@ -75,7 +82,7 @@ function ChangePasswordPage() {
                   <Link to="/MyBooking">
                     <div className="flex flex-row gap-[20px]">
                       <div>
-                        <img src={Booking} alt="" />
+                        <FaBook />
                       </div>
                       <div className="text-[#373A42]">My Booking</div>
                     </div>
@@ -85,7 +92,7 @@ function ChangePasswordPage() {
                   <Link to="/MyWhislist">
                     <div className="flex flex-row gap-[20px]">
                       <div>
-                        <img src={Whislist} alt="" />
+                        <FaHeart />
                       </div>
                       <div className="text-[#373A42]">My Whislist</div>
                     </div>
@@ -93,7 +100,7 @@ function ChangePasswordPage() {
                 </div>
                 <div className="flex flex-row gap-[20px]">
                   <div>
-                    <img src={Setting} alt="" />
+                    <FaGear />
                   </div>
                   <div className="text-[#373A42]">Setting</div>
                 </div>

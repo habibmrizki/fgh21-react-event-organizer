@@ -32,7 +32,7 @@ function App() {
         className={
           navbar
             ? "flex flex-col justify-between items-center md:flex-row gap-6 w-full md:w-auto"
-            : "md:flex gap-6 hidden "
+            : "md:flex gap-6  hidden "
         }
       >
         <div className="flex gap-[35px] md:gap-[50px] items-center flex-col md:flex-row">

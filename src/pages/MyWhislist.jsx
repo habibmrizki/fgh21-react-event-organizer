@@ -13,6 +13,13 @@ import { FaRegHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import NavbarProfile from "../components/NavbarProfile";
 import Footer from "../components/Footer";
+import { FaUser } from "react-icons/fa";
+import { FaPen } from "react-icons/fa";
+import { FaWallet } from "react-icons/fa";
+import { FaLockOpen } from "react-icons/fa6";
+import { FaBook } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import { FaGear } from "react-icons/fa6";
 
 function MyWhislist() {
   // component
@@ -37,35 +44,35 @@ function MyWhislist() {
               <div className="flex flex-col gap-[30px] font-bold text-[16px] ">
                 <div className="flex flex-row gap-[20px]">
                   <Link to="/Profile">
-                    <div className="flex flex-row gap-[20px]">
+                    <div className="flex flex-row gap-[20px] items-center">
                       <div>
-                        <img src={IconProfile} alt="" />
+                        <FaUser />
                       </div>
                       <div className="text-[#373A42]">Profile</div>
                     </div>
                   </Link>
                 </div>
-                <div className="flex flex-row gap-[20px] pl-[43px]">
+                <div className="flex flex-row gap-[20px] pl-[43px] items-center">
                   <div>
-                    <img src={WalletCard} alt="" />
+                    <FaWallet />
                   </div>
                   <div className="text-[#373A42]">Card</div>
                 </div>
-                <div className="flex flex-row gap-[20px] pl-[43px]">
+                <div className="flex flex-row gap-[20px] pl-[43px] items-center">
                   <Link to="/Profile">
                     <div className="flex flex-row gap-[20px]">
                       <div>
-                        <img src={Edit} alt="" />
+                        <FaPen />
                       </div>
                       <div className="text-[#373A42]">Edit Profile</div>
                     </div>
                   </Link>
                 </div>
-                <div className="flex flex-row gap-[20px] pl-[43px]">
+                <div className="flex flex-row gap-[20px] pl-[43px] items-center">
                   <Link to="/ChangePassword">
                     <div className="flex flex-row gap-[20px]">
                       <div>
-                        <img src={ChangePassword} alt="" />
+                        <FaLockOpen />
                       </div>
                       <div className="text-[#373A42]">Change Password</div>
                     </div>
@@ -75,7 +82,7 @@ function MyWhislist() {
                   <Link to="/MyBooking">
                     <div className="flex flex-row gap-[20px]">
                       <div>
-                        <img src={Booking} alt="" />
+                        <FaBook />
                       </div>
                       <div className="text-[#373A42]">My Booking</div>
                     </div>
@@ -83,17 +90,17 @@ function MyWhislist() {
                 </div>
                 <div className="flex flex-row gap-[20px]">
                   <Link to="/MyWhislist">
-                    <div className="flex flex-row gap-[20px]">
+                    <div className="flex flex-row gap-[20px] items-center">
                       <div>
-                        <img src={WhislistBlue} alt="" />
+                        <FaHeart className="text-[#3366ff]" />
                       </div>
                       <div className="text-[#3366ff]">My Whislist</div>
                     </div>
                   </Link>
                 </div>
-                <div className="flex flex-row gap-[20px]">
+                <div className="flex flex-row gap-[20px] items-center">
                   <div>
-                    <img src={Setting} alt="" />
+                    <FaGear />
                   </div>
                   <div className="text-[#373A42]">Setting</div>
                 </div>

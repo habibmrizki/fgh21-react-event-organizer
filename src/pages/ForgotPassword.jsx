@@ -7,6 +7,18 @@ import { Link } from "react-router-dom";
 
 function ForgotPassword() {
   // component
+  const navigate = useNavigate();
+  function processLogin(e) {
+    e.preventDefault();
+    const email = e.target.email.value;
+    if (email === "Habib@gmail.com") {
+      window.alert("Selamat login anda sukses!");
+      navigate("/");
+    } else {
+      email === "";
+      alert("Enter your account to Login");
+    }
+  }
   return (
     <div className="flex h-[100vh] ">
       <div className="md:flex w-7/12 bg-[#3366ff] hidden justify-center items-center">
@@ -32,7 +44,7 @@ function ForgotPassword() {
           </div>
           <div>
             <button
-              //   onSubmit={processLogin}
+              onSubmit={processLogin}
               className=" border-none rounded-lg w-full h-[55px] text-white bg-[#3366ff]"
             >
               Forgot Password

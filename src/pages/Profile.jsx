@@ -9,10 +9,16 @@ import Booking from "../assets/img/booking.png";
 import Whislist from "../assets/img/Wishlist.png";
 import ChangePassword from "../assets/img/lock.png";
 import ChoosePic from "../assets/img/profile-picture.png";
-import { FaChevronDown } from "react-icons/fa6";
 import NavbarProfile from "../components/NavbarProfile.jsx";
 import Footer from "../components/Footer.jsx";
 import { Link } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
+import { FaPen } from "react-icons/fa";
+import { FaWallet } from "react-icons/fa";
+import { FaLockOpen } from "react-icons/fa6";
+import { FaBook } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import { FaGear } from "react-icons/fa6";
 
 function Profile() {
   // component
@@ -33,12 +39,12 @@ function Profile() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-[30px] font-bold text-[16px] gap-[30px]">
+            <div className="flex flex-col gap-[30px] font-bold text-[16px] ">
               <div className="flex flex-row gap-[20px]">
                 <Link to="/Profile">
                   <div className="flex flex-row gap-[20px]">
                     <div>
-                      <img src={IconProfile} alt="" />
+                      <FaUser />
                     </div>
                     <div className="text-[#373A42]">Profile</div>
                   </div>
@@ -46,14 +52,14 @@ function Profile() {
               </div>
               <div className="flex flex-row gap-[20px] pl-[43px]">
                 <div>
-                  <img src={WalletCard} alt="" />
+                  <FaWallet />
                 </div>
                 <div className="text-[#373A42]">Card</div>
               </div>
               <div className="flex flex-row gap-[20px] pl-[43px]">
                 <a href="#" className="flex flex-row gap-[20px]">
-                  <div>
-                    <img src={Edit} alt="" />
+                  <div className="text-[#3366ff]">
+                    <FaPen />
                   </div>
                   <div className="text-[#3366ff]">Edit Profile</div>
                 </a>
@@ -62,7 +68,7 @@ function Profile() {
                 <Link to="/ChangePassword">
                   <div className="flex flex-row gap-[20px]">
                     <div>
-                      <img src={ChangePassword} alt="" />
+                      <FaLockOpen />
                     </div>
                     <div className="text-[#373A42]">Change Password</div>
                   </div>
@@ -72,7 +78,7 @@ function Profile() {
                 <Link to="/MyBooking">
                   <div className="flex flex-row gap-[20px]">
                     <div>
-                      <img src={Booking} alt="" />
+                      <FaBook />
                     </div>
                     <div className="text-[#373A42]">My Booking</div>
                   </div>
@@ -82,7 +88,7 @@ function Profile() {
                 <Link to="/MyWhislist">
                   <div className="flex flex-row gap-[20px]">
                     <div>
-                      <img src={Whislist} alt="" />
+                      <FaHeart />
                     </div>
                     <div className="text-[#373A42]">My Whislist</div>
                   </div>
@@ -90,7 +96,7 @@ function Profile() {
               </div>
               <div className="flex flex-row gap-[20px]">
                 <div>
-                  <img src={Setting} alt="" />
+                  <FaGear />
                 </div>
                 <div className="text-[#373A42]">Setting</div>
               </div>
@@ -122,7 +128,7 @@ function Profile() {
                   name="name"
                   id="name"
                   placeholder="jhon Thomson"
-                  className="rounded-xl pl-2 border pl-[25px] w-[65%] h-[50px]"
+                  className="rounded-xl border pl-[25px] w-[65%] h-[50px]"
                 />
               </div>
               <div className="flex justify-between">
@@ -168,7 +174,7 @@ function Profile() {
                   name="Entrepreneur"
                   id="Entrepreneur"
                   placeholder="Entrepreneur"
-                  className="rounded-xl pl-2 border pl-[25px] w-[65%] h-[50px]"
+                  className="rounded-xl  border pl-[25px] w-[65%] h-[50px]"
                 />
               </div>
               <div className="flex justify-between items-center">
@@ -180,7 +186,7 @@ function Profile() {
                   name="Nationality"
                   id="Nationality"
                   placeholder="Indonesia"
-                  className="rounded-xl pl-2 border pl-[25px] w-[65%] h-[50px]"
+                  className="rounded-xl border pl-[25px] w-[65%] h-[50px]"
                 />
                 {/* <button type="button">
                 <FaChevronDown />
@@ -199,7 +205,7 @@ function Profile() {
                 </button>
               </div>
             </form>
-            <div className="w-full mb-[70px] ">
+            <div className="w-full mb-[70px]">
               <div className="flex justify-center items-center pl-[60px]">
                 <div className="flex flex-col text-center gap-[60px] w-full items-center">
                   <div>
