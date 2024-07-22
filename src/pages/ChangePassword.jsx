@@ -20,6 +20,7 @@ import { FaLockOpen } from "react-icons/fa6";
 import { FaBook } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
+import { FaPlusCircle } from "react-icons/fa";
 
 function ChangePasswordPage() {
   // component
@@ -76,6 +77,17 @@ function ChangePasswordPage() {
                       </div>
                       <div className="text-[#2e5de8]">Change Password</div>
                     </div>
+                  </Link>
+                </div>
+                <div className="flex flex-row gap-[20px] ">
+                  <Link
+                    to="/CreateEvent"
+                    className="flex flex-row gap-[20px] items-center"
+                  >
+                    <div>
+                      <FaPlusCircle />
+                    </div>
+                    <div className="text-[#373A42]">Create Event</div>
                   </Link>
                 </div>
                 <div className="flex flex-row gap-[20px]">

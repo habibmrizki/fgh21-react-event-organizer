@@ -17,7 +17,7 @@ function navbar() {
   }
   return (
     <nav className="w-full flex justify-between md:flex-row flex-col items-center bg-[#ffffff] py-[1.4rem] px-[5%] inset-x-0 top-0 font-semibold md:w-full gap-[15px] md:gap-[0] ">
-      <div className="flex justify-between items-center w-full md:w-[10%] ">
+      <div className="flex justify-between items-center   ">
         <div className="text-2xl">
           <a href="#" className="flex flex-row justify-center items-center">
             <img src={LogoBlurWetick} alt="logo-witeck" />
@@ -40,11 +40,9 @@ function navbar() {
           <div className="text-sm tracking-[1px] text-[#3366FF] font-semibold ">
             <Link to="/">Home</Link>
           </div>
-          <Link to="" href="#">
-            <div className="text-sm tracking-[1px] font-semibold ">
-              Create Event
-            </div>
-          </Link>
+          <div className="text-sm tracking-[1px] font-semibold ">
+            <Link to="/CreateEvent">Create Event</Link>
+          </div>
           <a href="#">
             <div className="text-sm tracking-[1px] font-semibold ">
               Location

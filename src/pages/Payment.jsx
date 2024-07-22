@@ -16,7 +16,7 @@ function Payment() {
   return (
     <div>
       <Navbar />
-      <div className="flex  md:mt-[150px] mt-[0] bg-[#ffffff]  rounded-[30px] md:p-[100px] p-[30px] flex-wrap md:flex-nowrap ">
+      <div className="flex  md:mt-[150px] mt-[0] bg-[#ffffff] md:mx-[130px] rounded-[30px] md:p-[100px] p-[30px] flex-wrap md:flex-nowrap ">
         <div className="flex flex-col w-full">
           <div className="font-bold text-[20px] mb-[40px]">Payment Method</div>
           <form action="" className="flex flex-col gap-[40px] w-full">

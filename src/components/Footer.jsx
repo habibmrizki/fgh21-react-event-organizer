@@ -156,8 +156,8 @@ function Footer() {
 
     <footer className="flex flex-col md:flex-col md:px-[218px] md:py-[159px] w-full py-8 px-8">
       <div className="flex md:gap-[40px]  gap-[50px] flex-col md:flex-row">
-        <div className="flex flex-col w-2/5 gap-[30px]  ">
-          <div className="flex md:w-full w-[50%]  ">
+        <div className="flex flex-col md:w-2/5 gap-[30px] w-[full] ">
+          <div className="md:w-full w-[100%]  ">
             <img src={LogoWetick} alt="" className="" />
           </div>
           <div>Find events you love with our</div>
@@ -168,7 +168,7 @@ function Footer() {
             <img src={twitter} alt="" />
           </div>
         </div>
-        <div className="flex flex-col gap-[20px] w-[50%] md:w-1/5 ">
+        <div className="flex flex-col gap-[20px] w-[full] md:w-1/5 ">
           <div>Wetick</div>
           <div>About Us</div>
           <div>Features</div>
@@ -176,14 +176,14 @@ function Footer() {
           <div>Payments</div>
           <div>Mobile App</div>
         </div>
-        <div className="flex flex-col gap-[20px] w-[50%]  md:w-1/5 ">
+        <div className="flex flex-col gap-[20px] w-[full]  md:w-1/5 ">
           <div>Features</div>
           <div>Booking</div>
           <div>Create Event</div>
           <div>Discover</div>
           <div>Register</div>
         </div>
-        <div className="flex flex-col gap-[20px] w-[50%]  md:w-1/5 ">
+        <div className="flex flex-col gap-[20px] w-[full]  md:w-1/5 ">
           <div>Company</div>
           <div>Partnership</div>
           <div>Help</div>

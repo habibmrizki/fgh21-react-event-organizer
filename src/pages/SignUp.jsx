@@ -48,9 +48,9 @@ function SignUp() {
   //   }
 
   const navigate = useNavigate();
-  function processSignUp(e) {
+  function checkSignUp(e) {
     e.preventDefault();
-    const username = e.target.fullname.value;
+    const username = e.target.username.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
@@ -60,8 +60,10 @@ function SignUp() {
       password === "1234" &&
       confirmPassword === "1234"
     ) {
-      window.alert("Selamat login anda sukses!");
-      navigate("/");
+      window.alert(
+        "Selamat anda sudah melakukan sign up. Anda di alihkan ke halaman login!"
+      );
+      navigate("/Login");
     } else {
       username === "" &&
         email === "" &&
@@ -86,7 +88,7 @@ function SignUp() {
       </div>
       <div className="flex w-full md:w-5/12 justify-center items-center ">
         <form
-          onSubmit={processSignUp}
+          onSubmit={checkSignUp}
           className="flex max-w-xs w-full flex-col gap-[20px] "
         >
           <div>
@@ -104,7 +106,7 @@ function SignUp() {
               className="w-full h-full px-6 text-sm bg-[white] box-border border rounded-2xl overflow-hidden outline-none "
               type="text"
               placeholder="Full Name"
-              name="fullName"
+              name="username"
             />
           </div>
           <div className="flex h-[55px] rounded-2xl border-neutral-500">
@@ -118,7 +120,7 @@ function SignUp() {
           <div className="flex h-[55px] w-full bg-[white] rounded-2xl border justify-between bg-[transparent]">
             <input
               className="w-full  px-6 text-sm  box-border rounded-2xl overflow-hidden outline-none ::-ms-reveal-none"
-              type="password"
+              type={pass}
               placeholder="Password"
               name="password"
             />
@@ -133,7 +135,7 @@ function SignUp() {
           <div className="flex h-[55px] w-full bg-[white] rounded-2xl border justify-between bg-[transparent]">
             <input
               className="w-full  px-6 text-sm  box-border rounded-2xl overflow-hidden outline-none ::-ms-reveal-none"
-              type="password"
+              type={pass}
               placeholder="Confirm Password"
               name="confirmPassword"
             />
@@ -151,7 +153,7 @@ function SignUp() {
           </div>
           <div>
             <button
-              onSubmit={processSignUp}
+              onSubmit={checkSignUp}
               className=" border-none rounded-lg w-full h-[55px] text-white bg-[#3366ff]"
             >
               Sign Up

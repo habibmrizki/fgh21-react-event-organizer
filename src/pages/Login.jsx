@@ -13,17 +13,12 @@ function Login() {
   function processLogin(e) {
     e.preventDefault();
     const username = e.target.username.value;
-    const email = e.target.email.value;
     const password = e.target.password.value;
-    if (
-      username === "Habib" &&
-      email === "Habib@gmail.com" &&
-      password === "1234"
-    ) {
+    if (username === "Habib" && password === "1234") {
       window.alert("Selamat login anda sukses!");
       navigate("/");
     } else {
-      username === "" && email === "" && password === "";
+      username === "" && password === "";
       alert("Enter your account to Login");
     }
   }
@@ -58,14 +53,6 @@ function Login() {
               type="text"
               placeholder="Username"
               name="username"
-            />
-          </div>
-          <div className="flex h-[55px] rounded-2xl border-neutral-500">
-            <input
-              className="w-full h-full px-6 text-sm bg-[white] box-border border rounded-2xl overflow-hidden outline-none"
-              type="email"
-              placeholder="Email"
-              name="email"
             />
           </div>
           <div className="flex h-[55px] w-full bg-[white] rounded-2xl border justify-between bg-[transparent]">

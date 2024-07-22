@@ -40,7 +40,7 @@ function App() {
             <Link to="/">Home</Link>
           </div>
           <div className="text-sm tracking-[1px] font-semibold ">
-            <a href="#">Create Event</a>
+            <Link to="/CreateEvent">Create Event</Link>
           </div>
           <a href="#">
             <div className="text-sm tracking-[1px] font-semibold ">

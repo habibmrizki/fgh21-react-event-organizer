@@ -8,12 +8,11 @@ import { Link } from "react-router-dom";
 function ForgotPassword() {
   // component
   const navigate = useNavigate();
-  function processLogin(e) {
+  function CheckPass(e) {
     e.preventDefault();
     const email = e.target.email.value;
     if (email === "Habib@gmail.com") {
       window.alert("Selamat login anda sukses!");
-      navigate("/");
     } else {
       email === "";
       alert("Enter your account to Login");
@@ -26,7 +25,7 @@ function ForgotPassword() {
       </div>
       <div className="flex w-full md:w-5/12 justify-center items-center ">
         <form
-          //   onSubmit={processLogin}
+          onSubmit={CheckPass}
           className="flex max-w-xs w-full flex-col gap-[20px] "
         >
           <div>
@@ -44,7 +43,7 @@ function ForgotPassword() {
           </div>
           <div>
             <button
-              onSubmit={processLogin}
+              onSubmit={CheckPass}
               className=" border-none rounded-lg w-full h-[55px] text-white bg-[#3366ff]"
             >
               Forgot Password

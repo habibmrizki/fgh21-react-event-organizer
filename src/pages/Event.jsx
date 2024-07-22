@@ -14,7 +14,7 @@ function Event() {
   return (
     <div>
       <NavbarProfile />
-      <div className=" mt-[30px] bg-[#ffffff] md:mx-[30px] rounded-[30px] ">
+      <div className=" mt-[50px] bg-[#ffffff] md:mx-[120px] rounded-[30px] ">
         <div className="w-full md:p-[80px]  md:flex hidden ">
           <div className="flex flex-col items-center md:w-[50%] w-full h-full">
             <div>
