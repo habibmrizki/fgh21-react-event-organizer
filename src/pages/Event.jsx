@@ -14,11 +14,11 @@ function Event() {
   return (
     <div>
       <NavbarProfile />
-      <div className="md:mt-[150px] mt-[50px] bg-[#ffffff] md:mx-[130px] rounded-[30px] ">
+      <div className="md:mt-[150px] bg-[#e7c098] md:mx-[130px] md:rounded-[30px] ">
         <div className="w-full md:p-[80px]  md:flex hidden ">
-          <div className="flex flex-col items-center md:w-[50%] w-full h-full">
+          <div className="flex flex-col items-center md:w-[50%] w-full h-full ">
             <div>
-              <img src={PictureEvent} alt="" className="" />
+              <img src={PictureEvent} alt="" className="mt-[-20px] top-0" />
             </div>
             <div className="flex items-center text-center justify-center flex-row gap-[20px]">
               <div>
@@ -81,7 +81,7 @@ function Event() {
                 </div>
               </div>
               <Link to="/Booking">
-                <div className="flex justify-center items-center text-[white] bg-[#3366FF] w-[100%] h-[55px] rounded-[15px] ">
+                <div className="flex justify-center items-center text-[#fff] bg-[#222] w-[100%] h-[55px] rounded-[15px] ">
                   <button type="button">Buy Ticket</button>
                 </div>
               </Link>
@@ -90,7 +90,7 @@ function Event() {
         </div>
         <div className=" flex flex-col w-full md:hidden ">
           <div className="flex flex-col items-center w-full h-full">
-            <div className="w-full h-full relative">
+            <div className="w-full h-full relative mt-[-30px]">
               <img src={PictureEventMobile} alt="" className="w-full h-full" />
             </div>
             <div className="justify-start flex-col gap-[20px] absolute  text-[#ffffff] ">
@@ -157,8 +157,10 @@ function Event() {
               </div>
             </div>
             <Link to="/Booking">
-              <div className="flex justify-center items-center text-[white] bg-[#3366FF] w-[100%] h-[55px] rounded-[15px] ">
-                <button type="button">Buy Ticket</button>
+              <div className="flex justify-center items-center text-[white] bg-[#222] w-[100%] h-[55px] rounded-[15px] mb-[20px]">
+                <button type="button" className="">
+                  Buy Ticket
+                </button>
               </div>
             </Link>
           </div>

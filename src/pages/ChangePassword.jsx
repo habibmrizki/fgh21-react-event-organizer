@@ -21,23 +21,31 @@ import { FaBook } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
 import { FaPlusCircle } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 
 function ChangePasswordPage() {
   // component
+
+  const token = useSelector((state) => state.auth.form.token);
+  const profile = useSelector((state) => state.profile.data);
   return (
     <div>
       <NavbarProfile />
-      <div className="flex mt-[50px]">
-        <div className="w-[25%] bg-[#f4f7ff] pl-[50px] pr-[30px] hidden md:block">
+      <div className="flex md:mt-[50px]">
+        <div className="w-[25%] bg-[#b6895b] pl-[50px] pr-[30px] md:rounded-[30px] md:ml-5  hidden md:block">
           <div className="flex flex-col">
-            <div className="flex flex-row gap-[15px] mb-[50px] items-center">
+            <div className="flex flex-row gap-[15px] mb-[50px] items-center mt-[20px]">
               <div>
-                <img src={ProfilePic} alt="" />
+                <img
+                  src={profile.picture}
+                  alt=""
+                  className="h-[55px] w-[55px] rounded-full"
+                />
               </div>
               <div>
-                <div className="text-[14px] font-bold">Jhon Tomson</div>
+                <div className="text-[14px] font-bold">{profile.name}</div>
                 <div className="text-[14px] text-[#373a42b]">
-                  Entrepeneur, Id
+                  {profile.profession}
                 </div>
               </div>
             </div>
@@ -130,7 +138,7 @@ function ChangePasswordPage() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:w-[70%] bg-white md:pb-[300px] p-[40px] md:p-12 rounded-3xl w-full">
+        <div className="flex flex-col md:w-[70%] md:ml-[50px] bg-[#b6895b] md:pb-[300px] p-[40px] md:p-12 md:rounded-[30px] w-full md:mr-[70px]">
           <form className="flex  flex-col gap-[33px] w-full">
             <div className="text-[20px] font-semibold text-[#373A42]">
               Change Password
@@ -174,7 +182,7 @@ function ChangePasswordPage() {
               </div>
             </div>
             <div className="flex">
-              <button className="w-full bg-[#3366FF] h-[61px] text-white rounded-[15px] font-semiBold">
+              <button className="w-full bg-[#222] h-[61px] text-white rounded-[15px] font-semiBold">
                 Update
               </button>
             </div>

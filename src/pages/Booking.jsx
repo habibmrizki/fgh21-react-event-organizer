@@ -62,7 +62,7 @@ function Booking() {
   return (
     <div>
       <NavbarProfile />
-      <div className="flex md:mt-[150px] bg-[#ffffff] md:mx-[120px] rounded-[30px] flex-col md:flex-row items-start justify-center mt-[30px] p-[30px]">
+      <div className="flex md:mt-[150px] bg-[#e7c098] md:mx-[120px] md:rounded-[30px] flex-col md:flex-row items-start justify-center  p-[30px]">
         <div className="md:flex md:justify-center md:items-center md:w-[50%] w-[100%] mt-[60px] hidden ">
           <img src={SeatMap} alt="" className="" />
         </div>
@@ -100,14 +100,14 @@ function Booking() {
                   <div className="flex gap-[20px] mt-[25px]">
                     <button
                       onClick={seatPurpleMinus}
-                      className="border-2 w-[33px] h-[30.1px] rounded-[7px] text-center"
+                      className="border-2 border-stone-950 w-[33px] h-[30.1px] rounded-[7px] text-center"
                     >
                       -
                     </button>
                     <div>{purple}</div>
                     <button
                       onClick={seatPurplePlus}
-                      className="border-2 w-[33px] h-[30.1px] rounded-[7px] text-center"
+                      className="border-2 border-stone-950 w-[33px] h-[30.1px] rounded-[7px] text-center"
                     >
                       +
                     </button>
@@ -133,14 +133,14 @@ function Booking() {
                   <div className="flex gap-[20px] mt-[25px]">
                     <button
                       onClick={seatRedMinus}
-                      className="border-2 w-[33px] h-[30.1px] rounded-[7px] text-center"
+                      className="border-2 border-stone-950 w-[33px] h-[30.1px] rounded-[7px] text-center"
                     >
                       -
                     </button>
                     <div>{red}</div>
                     <button
                       onClick={seatRedPlus}
-                      className="border-2 w-[33px] h-[30.1px] rounded-[7px] text-center"
+                      className="border-2 border-stone-950 w-[33px] h-[30.1px] rounded-[7px] text-center"
                     >
                       +
                     </button>
@@ -166,14 +166,14 @@ function Booking() {
                   <div className="flex gap-[20px] mt-[25px]">
                     <button
                       onClick={seatOrangeMinus}
-                      className="border-2 w-[33px] h-[30.1px] rounded-[7px] text-center"
+                      className="border-2 border-stone-950 w-[33px] h-[30.1px] rounded-[7px] text-center"
                     >
                       -
                     </button>
                     <div>{orange}</div>
                     <button
                       onClick={seatOrangePlus}
-                      className="border-2 w-[33px] h-[30.1px] rounded-[7px] text-center"
+                      className="border-2  border-stone-950 w-[33px] h-[30.1px] rounded-[7px] text-center"
                     >
                       +
                     </button>
@@ -210,7 +210,7 @@ function Booking() {
             <Link to="/Payment">
               <button
                 type="button"
-                className="bg-[#3366ff] text-[white] w-full h-[55px] rounded-[15px] mt-[35px] "
+                className="bg-[#222] text-[white] w-full h-[55px] rounded-[15px] mt-[35px] "
               >
                 Checkout
               </button>

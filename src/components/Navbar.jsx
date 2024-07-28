@@ -4,6 +4,11 @@ import LogoBlurWetick from "../assets/img/logo-blur-wetick.png";
 import { Link } from "react-router-dom";
 import SignUp from "../pages/SignUp";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useSelector } from "react-redux";
+import Avatar from "../assets/img/Avatar.svg";
+import profile from "../redux/reducers/profile";
+import { TiTicket } from "react-icons/ti";
+import { FaTicket } from "react-icons/fa6";
 
 function navbar() {
   // component
@@ -15,14 +20,21 @@ function navbar() {
       setNavbar(true);
     }
   }
+  const token = useSelector((state) => state.auth.form);
+  const profile = useSelector((state) => state.profile.data);
+
   return (
-    <nav className="w-full flex justify-between md:flex-row flex-col items-center bg-[#ffffff] py-[1.4rem] px-[5%] inset-x-0 top-0 font-semibold md:w-full gap-[15px] md:gap-[0] ">
-      <div className="flex justify-between items-center   ">
-        <div className="text-2xl">
-          <a href="#" className="flex flex-row justify-center items-center">
-            <img src={LogoBlurWetick} alt="logo-witeck" />
-            <span className="text-[#3366ff]">We</span>
-            <span className="text-[#FC1055]">Tick</span>
+    <nav className="w-full flex justify-between md:flex-row flex-col items-center fixed z-10 bg-[#222] py-[1.4rem] px-[5%] inset-x-0 top-0 font-semibold md:w-full gap-[15px] md:gap-[0] ">
+      <div className="flex justify-between items-center md:w-auto w-full">
+        <div className="text-2xl italic">
+          <a
+            href="#"
+            className="flex flex-row justify-center items-center gap-3"
+          >
+            <FaTicket className="text-blue-600" />
+            <div className="text-[#b6895b]">
+              Kenanga<span className="text-[#fff]">senja</span>
+            </div>
           </a>
         </div>
         <button type="button" onClick={buttonMenu} className="md:hidden ">
@@ -32,25 +44,25 @@ function navbar() {
       <div
         className={
           navbar
-            ? "flex flex-col justify-between items-center md:flex-row gap-6 w-full md:w-auto"
+            ? "flex flex-col justify-between items-center md:flex-row gap-6 w-full md:w-auto "
             : "md:flex gap-6 hidden "
         }
       >
-        <div className="flex gap-[30px] items-center flex-col md:flex-row w-full">
+        <div className="flex gap-[30px] items-center flex-col md:flex-row w-full ">
           <div className="text-sm tracking-[1px] text-[#3366FF] font-semibold ">
             <Link to="/">Home</Link>
           </div>
-          <div className="text-sm tracking-[1px] font-semibold ">
+          <div className="text-sm tracking-[1px] font-semibold text-[#fff] ">
             <Link to="/CreateEvent">Create Event</Link>
           </div>
           <a href="#">
-            <div className="text-sm tracking-[1px] font-semibold ">
+            <div className="text-sm tracking-[1px] font-semibold  text-[#fff] ">
               Location
             </div>
           </a>
         </div>
       </div>
-      <div
+      {/* <div
         className={
           navbar
             ? "flex flex-col items-center md:flex-row gap-6 w-full md:w-auto"
@@ -73,7 +85,36 @@ function navbar() {
             <Link to="/SignUp">Sign Up</Link>
           </button>
         </div>
-      </div>
+      </div> */}
+      {token === null ? (
+        <div className="flex flex-col gap-3 md:flex-row md:gap-0">
+          <Link to="/login">
+            <button className="h-10 w-36 font-bold text-[#373A42] ">
+              Log in
+            </button>
+          </Link>
+          <Link to="/SignUp">
+            <button className="bg-[#3366FF] h-10  w-36 text-white rounded-xl font-bold">
+              Sign up
+            </button>
+          </Link>
+        </div>
+      ) : (
+        <Link to="/Profile" className="flex items-center gap-2 ">
+          <div className="flex items-center gap-4 justify-center ">
+            <button className="h-[55px] w-[55px] flex justify-center items-center rounded-full overflow-hidden border-4 border-[#b6895b]">
+              <img
+                src={profile.picture}
+                alt=""
+                className="h-[44px] w-[44px] rounded-full"
+              />
+            </button>
+            <button className="text-[#fff] font-semibold text-sm">
+              {profile.name}
+            </button>
+          </div>
+        </Link>
+      )}
     </nav>
   );
 }

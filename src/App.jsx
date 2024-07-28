@@ -16,6 +16,8 @@ import EventHome from "./components/EventHome.jsx";
 import ForgotPassword from "./pages/ForgotPassword.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./redux/store.js";
 
 const arrayRouter = [
   {
@@ -76,7 +78,12 @@ const router = createBrowserRouter(arrayRouter);
 
 function App() {
   // component
-  return <RouterProvider router={router} />;
+
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />;
+    </Provider>
+  );
 }
 
 export default App;

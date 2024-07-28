@@ -20,6 +20,7 @@ import { FaLockOpen } from "react-icons/fa6";
 import { FaBook } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
 
 function CreateEvent() {
   // component
@@ -49,6 +50,8 @@ function CreateEvent() {
     PopUp.classList.toggle("hidden");
   }
 
+  const token = useSelector((state) => state.auth.form.token);
+  const profile = useSelector((state) => state.profile.data);
   // formList.addEventListener("submit", function (e) {
   //   e.preventDefault();
   //   contentPopup.classList.remove("hide");
@@ -59,17 +62,21 @@ function CreateEvent() {
       <div>
         <NavbarProfile />
         <div>
-          <div className="md:flex md:mt-[50px] mt-[0] w-full">
-            <div className="w-[25%] bg-[#f4f7ff] pl-[50px] pr-[30px] hidden md:block">
+          <div className="md:flex md:mt-[50px] mt-[0] w-full ">
+            <div className="w-[25%] bg-[#b6895b]  pl-[50px] pr-[30px] hidden md:block md:ml-5 md:rounded-[30px]">
               <div className="flex flex-col">
-                <div className="flex flex-row gap-[15px] mb-[50px] items-center">
+                <div className="flex flex-row gap-[15px] mb-[50px] items-center md:mt-[20px]">
                   <div>
-                    <img src={ProfilePic} alt="" />
+                    <img
+                      src={profile.picture}
+                      alt=""
+                      className="h-[55px] w-[55px] rounded-full"
+                    />
                   </div>
                   <div>
-                    <div className="text-[14px] font-bold">Jhon Tomson</div>
+                    <div className="text-[14px] font-bold">{profile.name}</div>
                     <div className="text-[14px] text-[#373a42b]">
-                      Entrepeneur, Id
+                      {profile.profession}
                     </div>
                   </div>
                 </div>
@@ -157,140 +164,139 @@ function CreateEvent() {
                 </div>
               </div>
             </div>
-            <div className="w-[100%] md:w-[75%] bg-[#fff] md:mr-[70px] rounded-[20px] ">
-              <div className="w-full md:p-[30px] p-[30px]  md:mr-[120px] bg-[#ffff] rounded-[30px] flex flex-col ">
-                <div className="flex md:items-center md:justify-between flex-col gap-[30px] md:flex-row md:p-[33px] p-[30px]">
-                  <div className="text-[20px] font-bold text-[#373A42] ">
-                    Manage Event
-                  </div>
-                  <div className="bg-[#eaf1ff] w-[125px] h-[50px] flex items-center justify-center rounded-[15px]">
-                    <button
-                      type="submit"
-                      onClick={setPopUp}
-                      className="text-[#2e5de8] font-medium"
-                    >
-                      Create
-                    </button>
+
+            <div className="md:w-[75%] md:ml-[50px] md:p-[30px] p-[30px]  md:mr-[120px] bg-[#b6895b]  md:rounded-[30px] flex flex-col ">
+              <div className="flex md:items-center md:justify-between flex-col gap-[30px] md:flex-row md:p-[33px] p-[30px]">
+                <div className="text-[20px] font-bold text-[#373A42] ">
+                  Manage Event
+                </div>
+                <div className="bg-[#222] w-[125px] h-[50px] flex items-center justify-center rounded-[15px]">
+                  <button
+                    type="submit"
+                    onClick={setPopUp}
+                    className="text-[#ffffff] font-medium"
+                  >
+                    Create
+                  </button>
+                </div>
+              </div>
+              <div className="flex flex-col gap-[20px] p-[30px] ">
+                <div className="flex justify-between">
+                  <div className="flex gap-[25px]">
+                    <div className="flex flex-col p-[10px] text-center font-semibold text-[#ff8900] bg-[#ffffff]  w-[60px] h-[75px] rounded-[20px]">
+                      <div>15</div>
+                      <div className="text-gray-500">Wed</div>
+                    </div>
+                    <div className="flex flex-col gap-[15px]">
+                      <div className="text-[24px] font-bold text-[#373A42]">
+                        Sights & Sounds Exhibition
+                      </div>
+                      <div>
+                        <div className="flex flex-col gap-[10px]">
+                          <div className="text-gray-500">
+                            Jakarta, Indonesia
+                          </div>
+                          <div className="text-gray-500">
+                            Wed, 15 Nov, 4:00 PM
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-row gap-[15px]">
+                        <div className="text-[#3366FF]">Details</div>
+                        <div className="text-[#3366FF]">Update</div>
+                        <div className="text-[#3366FF]">Delete</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="flex flex-col gap-[20px] p-[30px] ">
-                  <div className="flex justify-between">
-                    <div className="flex gap-[25px]">
-                      <div className="flex flex-col p-[10px] text-center font-semibold text-[#ff8900] shadow-2xl shadow-gray-300 w-[60px] h-[75px] rounded-[20px]">
-                        <div>15</div>
-                        <div className="text-gray-500">Wed</div>
+                <hr />
+                <div className="flex justify-between">
+                  <div className="flex gap-[25px]">
+                    <div className="flex flex-col p-[10px] text-center font-semibold text-[#ff8900] bg-[#ffffff]  w-[60px] h-[75px] rounded-[20px]">
+                      <div>15</div>
+                      <div className="text-gray-500">Wed</div>
+                    </div>
+                    <div className="flex flex-col gap-[15px]">
+                      <div className="text-[24px] font-bold text-[#373A42]">
+                        Sights & Sounds Exhibition
                       </div>
-                      <div className="flex flex-col gap-[15px]">
-                        <div className="text-[24px] font-bold text-[#373A42]">
-                          Sights & Sounds Exhibition
-                        </div>
-                        <div>
-                          <div className="flex flex-col gap-[10px]">
-                            <div className="text-gray-500">
-                              Jakarta, Indonesia
-                            </div>
-                            <div className="text-gray-500">
-                              Wed, 15 Nov, 4:00 PM
-                            </div>
+                      <div>
+                        <div className="flex flex-col gap-[10px]">
+                          <div className="text-gray-500">
+                            Jakarta, Indonesia
+                          </div>
+                          <div className="text-gray-500">
+                            Wed, 15 Nov, 4:00 PM
                           </div>
                         </div>
-                        <div className="flex flex-row gap-[15px]">
-                          <div className="text-[#3366FF]">Details</div>
-                          <div className="text-[#3366FF]">Update</div>
-                          <div className="text-[#3366FF]">Delete</div>
-                        </div>
+                      </div>
+                      <div className="flex flex-row gap-[15px]">
+                        <div className="text-[#3366FF]">Details</div>
+                        <div className="text-[#3366FF]">Update</div>
+                        <div className="text-[#3366FF]">Delete</div>
                       </div>
                     </div>
                   </div>
-                  <hr />
-                  <div className="flex justify-between">
-                    <div className="flex gap-[25px]">
-                      <div className="flex flex-col p-[10px] text-center font-semibold text-[#ff8900] shadow-2xl shadow-gray-300 w-[60px] h-[75px] rounded-[20px]">
-                        <div>15</div>
-                        <div className="text-gray-500">Wed</div>
-                      </div>
-                      <div className="flex flex-col gap-[15px]">
-                        <div className="text-[24px] font-bold text-[#373A42]">
-                          Sights & Sounds Exhibition
-                        </div>
-                        <div>
-                          <div className="flex flex-col gap-[10px]">
-                            <div className="text-gray-500">
-                              Jakarta, Indonesia
-                            </div>
-                            <div className="text-gray-500">
-                              Wed, 15 Nov, 4:00 PM
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex flex-row gap-[15px]">
-                          <div className="text-[#3366FF]">Details</div>
-                          <div className="text-[#3366FF]">Update</div>
-                          <div className="text-[#3366FF]">Delete</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <hr />
-                  <div className="flex justify-between">
-                    <div className="flex gap-[25px]">
-                      <div className="flex flex-col p-[10px] text-center font-semibold text-[#ff8900] shadow-2xl shadow-gray-300 w-[60px] h-[75px] rounded-[20px]">
-                        <div>15</div>
-                        <div className="text-gray-500">Wed</div>
-                      </div>
-                      <div className="flex flex-col gap-[15px]">
-                        <div className="text-[24px] font-bold text-[#373A42]">
-                          Sights & Sounds Exhibition
-                        </div>
-                        <div>
-                          <div className="flex flex-col gap-[10px]">
-                            <div className="text-gray-500">
-                              Jakarta, Indonesia
-                            </div>
-                            <div className="text-gray-500">
-                              Wed, 15 Nov, 4:00 PM
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex flex-row gap-[15px]">
-                          <div className="text-[#3366FF]">Details</div>
-                          <div className="text-[#3366FF]">Update</div>
-                          <div className="text-[#3366FF]">Delete</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <hr />
-                  <div className="flex justify-between">
-                    <div className="flex gap-[25px]">
-                      <div className="flex flex-col p-[10px] text-center font-semibold text-[#ff8900] shadow-2xl shadow-gray-300 w-[60px] h-[75px] rounded-[20px]">
-                        <div>15</div>
-                        <div className="text-gray-500">Wed</div>
-                      </div>
-                      <div className="flex flex-col gap-[15px]">
-                        <div className="text-[24px] font-bold text-[#373A42]">
-                          Sights & Sounds Exhibition
-                        </div>
-                        <div>
-                          <div className="flex flex-col gap-[10px]">
-                            <div className="text-gray-500">
-                              Jakarta, Indonesia
-                            </div>
-                            <div className="text-gray-500">
-                              Wed, 15 Nov, 4:00 PM
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex flex-row gap-[15px]">
-                          <div className="text-[#3366FF]">Details</div>
-                          <div className="text-[#3366FF]">Update</div>
-                          <div className="text-[#3366FF]">Delete</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <hr />
                 </div>
+                <hr />
+                <div className="flex justify-between">
+                  <div className="flex gap-[25px]">
+                    <div className="flex flex-col p-[10px] text-center font-semibold text-[#ff8900] bg-[#ffffff]  w-[60px] h-[75px] rounded-[20px]">
+                      <div>15</div>
+                      <div className="text-gray-500">Wed</div>
+                    </div>
+                    <div className="flex flex-col gap-[15px]">
+                      <div className="text-[24px] font-bold text-[#373A42]">
+                        Sights & Sounds Exhibition
+                      </div>
+                      <div>
+                        <div className="flex flex-col gap-[10px]">
+                          <div className="text-gray-500">
+                            Jakarta, Indonesia
+                          </div>
+                          <div className="text-gray-500">
+                            Wed, 15 Nov, 4:00 PM
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-row gap-[15px]">
+                        <div className="text-[#3366FF]">Details</div>
+                        <div className="text-[#3366FF]">Update</div>
+                        <div className="text-[#3366FF]">Delete</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div className="flex justify-between">
+                  <div className="flex gap-[25px]">
+                    <div className="flex flex-col p-[10px] text-center font-semibold text-[#ff8900] bg-[#ffffff]  w-[60px] h-[75px] rounded-[20px]">
+                      <div>15</div>
+                      <div className="text-gray-500">Wed</div>
+                    </div>
+                    <div className="flex flex-col gap-[15px]">
+                      <div className="text-[24px] font-bold text-[#373A42]">
+                        Sights & Sounds Exhibition
+                      </div>
+                      <div>
+                        <div className="flex flex-col gap-[10px]">
+                          <div className="text-gray-500">
+                            Jakarta, Indonesia
+                          </div>
+                          <div className="text-gray-500">
+                            Wed, 15 Nov, 4:00 PM
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-row gap-[15px]">
+                        <div className="text-[#3366FF]">Details</div>
+                        <div className="text-[#3366FF]">Update</div>
+                        <div className="text-[#3366FF]">Delete</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr />
               </div>
             </div>
           </div>

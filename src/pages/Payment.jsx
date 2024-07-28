@@ -16,7 +16,7 @@ function Payment() {
   return (
     <div>
       <Navbar />
-      <div className="flex  md:mt-[150px] mt-[0] bg-[#ffffff] md:mx-[130px] rounded-[30px] md:p-[100px] p-[30px] flex-wrap md:flex-nowrap ">
+      <div className="flex  md:mt-[150px] mt-[0] bg-[#e7c098] md:mx-[130px] md:rounded-[30px] rounded-none md:p-[100px] p-[30px] flex-wrap md:flex-nowrap ">
         <div className="flex flex-col w-full">
           <div className="font-bold text-[20px] mb-[40px]">Payment Method</div>
           <form action="" className="flex flex-col gap-[40px] w-full">
@@ -88,7 +88,7 @@ function Payment() {
             </div>
           </form>
         </div>
-        <div className=" md:border-l-4 md:border-t-0 md:border-l-[#C1C5D040] w-full mt-[50px] md:mt-[0] border-t-4 border-t-[#C1C5D040] border-0">
+        <div className=" md:border-l-4 md:border-t-0 md:border-l-[black] w-full mt-[50px] md:mt-[0] border-t-4 border-t-[black] border-0">
           <div className=" md:pl-[100px] pl-[0] ">
             <div className="flex mb-[50px] font-bold text-[20px] mt-[30px] md:mt-[0]">
               Ticket Detail
@@ -114,7 +114,7 @@ function Payment() {
               </div>
               <div>
                 <Link to="/MyBooking">
-                  <button className="text-[white] mt-[50px] bg-[#3366ff] rounded-[15px] w-full h-[55px]">
+                  <button className="text-[white] mt-[50px] bg-[#222] rounded-[15px] w-full h-[55px]">
                     Payment
                   </button>
                 </Link>

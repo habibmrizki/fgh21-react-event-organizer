@@ -1,5 +1,4 @@
 import React from "react";
-
 import People1 from "../assets/img/people1.png";
 import People2 from "../assets/img/people2.png";
 import People3 from "../assets/img/people3.png";
@@ -8,7 +7,7 @@ import People4 from "../assets/img/people4.png";
 function App() {
   // component
   return (
-    <div className="flex relative">
+    <div className="flex relative ">
       <div className="h-[29px] w-[29px] rounded-full overflow-hidden border border-white relative">
         <img
           src={People1}
