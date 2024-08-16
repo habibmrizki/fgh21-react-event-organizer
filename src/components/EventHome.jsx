@@ -6,26 +6,26 @@ import Event4 from "../assets/img/picture-event4.jpg";
 import Event5 from "../assets/img/picture-event5.jpg";
 import Event6 from "../assets/img/picture-event6.jpg";
 import Event7 from "../assets/img/picture-event7.jpg";
-import Attendee from "./Attendee";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { addEvent } from "../redux/reducers/event";
-import { data } from "autoprefixer";
 
 function EventHome() {
   const newEvent = useSelector((state) => state.event.dataEvent);
-  const endpoint = "https://wsw6zh-8888.csb.app/events";
+  const endpoint = "http://localhost:8080/event";
   const dispatch = useDispatch();
   useEffect(() => {
     (async () => {
       const data = await axios.get(endpoint);
-      const resultData = data.data.results;
-      console.log(newEvent);
+      const resultData = data.data.result;
+      // console.log(resultData);
       dispatch(addEvent(resultData));
+      // console.log(endpoint);
     })();
   }, []);
 
+  // console.log(newEvent);
   const dummyEvent = [
     {
       id: 1,
@@ -77,35 +77,25 @@ function EventHome() {
     },
   ];
   return (
-    <div className="flex gap-[30px] my-[50px] mx-[60px]">
+    <div className="flex gap-[30px] my-[50px] overflow-x-scroll mx-[60px] mb-[100px]">
       {newEvent.map((data) => {
         return (
-          <div className="flex gap-4">
-            <div className="w-[260px] h-[376px] overflow-hidden rounded-3xl flex-shrink-0 relative">
-              <img
-                src={"https://wsw6zh-8888.csb.app" + data.picture}
-                alt="Event-1"
-                className="w-full h-full object-cover"
-              />
-              <div className="flex flex-col justify-end text-white gap-6 px-[25px] py-[32px] absolute w-full h-full bg-gradient-to-b from-transparent via-[rgba(0,0,0,0)] to-[rgba(16,20,38,1)] top-0 left-0">
-                <div className="flex flex-col">
-                  <div className="text-sm">{data.time}</div>
-                  <div className="text-2xl font-semibold">{data.title}</div>
-                  <div className="flex relative">
-                    {data.attendees.map((item) => {
-                      return (
-                        <div className="h-[29px] w-[29px] rounded-full overflow-hidden border border-white  ml-[-10px] left-4">
-                          <img
-                            src={"https://wsw6zh-8888.csb.app" + item.picture}
-                            className="h-full w-full object-cover"
-                          />
-                        </div>
-                      );
-                    })}
+          <div className="flex gap-4 flex-row">
+            <Link to="/Event">
+              <div className="w-[260px] h-[376px] overflow-hidden rounded-3xl flex-shrink-0 relative ">
+                <img
+                  src={data.image}
+                  alt="Event-1"
+                  className="w-full h-full object-cover"
+                />
+                <div className="flex flex-col justify-end text-white gap-6 px-[25px] py-[32px] absolute w-full h-full bg-gradient-to-b from-transparent via-[rgba(0,0,0,0)] to-[rgba(16,20,38,1)] top-0 left-0">
+                  <div className="flex flex-col">
+                    <div className="text-sm">{data.date}</div>
+                    <div className="text-2xl font-semibold">{data.title}</div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         );
       })}

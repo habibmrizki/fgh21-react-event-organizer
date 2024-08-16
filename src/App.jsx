@@ -33,6 +33,9 @@ const arrayRouter = [
     element: <Event />,
   },
   {
+    path: "events/:id",
+  },
+  {
     path: "/Booking",
     element: <Booking />,
   },

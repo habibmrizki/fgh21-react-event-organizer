@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavbarProfile from "../components/NavbarProfile.jsx";
 import PictureEvent from "../assets/img/picture1.png";
 import PictureEventMobile from "../assets/img/pic-event-mobile.png";
@@ -8,8 +8,19 @@ import Attendee from "../components/Attendee.jsx";
 import { FaRegHeart } from "react-icons/fa";
 import Footer from "../components/Footer";
 import Clock from "../assets/img/clock.svg";
+import { useDispatch } from "react-redux";
+import { addEvent } from "../redux/reducers/event.js";
 
 function Event() {
+  // const endpoint = "http://localhost:8080/event";
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   async () => {
+  //     const data = await axios.get(endpoint);
+  //     const resultData = data.data.result;
+  //     dispatch(addEvent(resultData));
+  //   };
+  // });
   // component
   return (
     <div>

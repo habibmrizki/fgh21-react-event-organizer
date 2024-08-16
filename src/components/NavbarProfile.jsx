@@ -1,6 +1,4 @@
 import React from "react";
-import LogoBlurWetick from "../assets/img/logo-blur-wetick.png";
-import Avatar from "../assets/img/Avatar.svg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";

@@ -42,25 +42,22 @@ function Login() {
     //   method: "POST",
     //   body: inputData,
     // });
-    fetch("https://wsw6zh-8888.csb.app/auth/login", {
+    fetch("https://localhost:8080/auth/login", {
       method: "POST",
       body: inputData,
     }).then((response) => {
       response.json().then((data) => {
         if (data.success) {
-          const token = data.results.token;
+          const token = data.result.token;
           dispatch(login(token));
           (async () => {
-            const response = await fetch(
-              "https://wsw6zh-8888.csb.app/profile",
-              {
-                headers: {
-                  Authorization: "Bearer " + token,
-                },
-              }
-            );
+            const response = await fetch("https://localhost:8080/profile", {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            });
             const data = await response.json();
-            dispatch(addProfile(data.results));
+            dispatch(addProfile(data.result));
             console.log(data);
             navigate("/");
           })();
@@ -152,7 +149,7 @@ function Login() {
               </Link>
             </div>
           </div>
-          <div>
+          <div className="flex flex-col gap-[20px]">
             <button
               onSubmit={processLogin}
               className=" border-none rounded-lg w-full h-[55px] text-white bg-[#3366ff]"

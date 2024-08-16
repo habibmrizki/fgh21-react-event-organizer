@@ -12,7 +12,6 @@ const reducer = combineReducers({
   auth,
   event,
   profile,
-  event,
 });
 
 export default reducer;
