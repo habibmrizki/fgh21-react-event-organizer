@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import ButtonLeft from "../assets/img/button-left.png";
 import ButtonRight from "../assets/img/button-right.png";
+import { addEvent } from "../redux/reducers/event";
 
 function CategoryEvent() {
   const newEvent = useSelector((state) => state.event.dataEvent);

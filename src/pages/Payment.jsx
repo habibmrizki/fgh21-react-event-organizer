@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 import Wallet from "../assets/img/dompet.png";
 import Dollar from "../assets/img/icon-dollar.png";
 import Retail from "../assets/img/retail.png";
@@ -13,6 +13,11 @@ import { FaChevronDown } from "react-icons/fa6";
 
 function Payment() {
   // component
+  const [atm, setAtm] = React.useState(true);
+  function toggleAtm() {
+    setAtm(!atm);
+  }
+
   return (
     <div>
       <Navbar />
@@ -30,20 +35,24 @@ function Payment() {
                 </div>
                 <div className="font-bold">Card</div>
               </div>
-              <button type="button">
+              <button type="button" onClick={toggleAtm}>
                 <FaChevronDown />
               </button>
             </div>
-            <div className="flex justify-between items-center w-[315px] pl-[27px]">
-              <div className="flex items-center gap-[15px]">
-                <div>
-                  <img src={Atm} alt="" />
+            {atm ? (
+              <div className="flex justify-between items-center w-[315px] pl-[27px]">
+                <div className="flex items-center gap-[15px]">
+                  <div>
+                    <img src={Atm} alt="ATM" />
+                  </div>
+                  <button className="flex items-center justify-center rounded-[10px] w-[45px] h-[45px] border-2 border-[#3366ff] border-dotted">
+                    <FaPlus />
+                  </button>
                 </div>
-                <button className="flex items-center justify-center rounded-[10px] w-[45px] h-[45px] border-2 border-[#3366ff] border-dotted">
-                  <FaPlus />
-                </button>
               </div>
-            </div>
+            ) : (
+              ""
+            )}
             <div className="flex  justify-between items-center w-full max-w-[310px]">
               <div className="flex items-center gap-[15px]">
                 <div>

@@ -22,7 +22,7 @@ function navbar() {
   }
   const token = useSelector((state) => state.auth.form);
   const profile = useSelector((state) => state.profile.data);
-
+  console.log(token !== null);
   return (
     <nav className="w-full flex justify-between md:flex-row flex-col items-center fixed z-10 bg-[#222] py-[1.4rem] px-[5%] inset-x-0 top-0 font-semibold md:w-full gap-[15px] md:gap-[0] ">
       <div className="flex justify-between items-center md:w-auto w-full">
@@ -86,20 +86,7 @@ function navbar() {
           </button>
         </div>
       </div> */}
-      {token === null ? (
-        <div className="flex flex-col gap-3 md:flex-row md:gap-0">
-          <Link to="/login">
-            <button className="h-10 w-36 font-bold text-[#373A42] ">
-              Log in
-            </button>
-          </Link>
-          <Link to="/SignUp">
-            <button className="bg-[#3366FF] h-10  w-36 text-white rounded-xl font-bold">
-              Sign up
-            </button>
-          </Link>
-        </div>
-      ) : (
+      {token !== null ? (
         <Link to="/Profile" className="flex items-center gap-2 ">
           <div className="flex items-center gap-4 justify-center ">
             <button className="h-[55px] w-[55px] flex justify-center items-center rounded-full overflow-hidden border-4 border-[#b6895b]">
@@ -112,6 +99,21 @@ function navbar() {
             <button className="text-[#fff] font-semibold text-sm">
               {profile.name}
             </button>
+          </div>
+        </Link>
+      ) : (
+        <Link to="/Profile" className="flex items-center gap-2 ">
+          <div className="flex flex-col gap-3 md:flex-row md:gap-0">
+            <Link to="/login">
+              <button className="h-10 w-36 font-bold text-[#373A42] ">
+                Log in
+              </button>
+            </Link>
+            <Link to="/SignUp">
+              <button className="bg-[#3366FF] h-10  w-36 text-white rounded-xl font-bold">
+                Sign up
+              </button>
+            </Link>
           </div>
         </Link>
       )}

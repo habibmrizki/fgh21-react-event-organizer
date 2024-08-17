@@ -17,73 +17,68 @@ import { FaTicket } from "react-icons/fa6";
 function Login() {
   // const dispatch = useDispatch();
   // const [alert, setALert] = useState(false);
-  const [loading, setLoading] = useState(false);
+  let [alert, setAlert] = React.useState(0);
+  const [message, setMessage] = React.useState("");
+  const [loading, setLoading] = useState(0);
+  const [pass, setPass] = useState("password");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   function processLogin(e) {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    // dispatch(login(data.results.token));
-    // if (username === "Habib" && password === "1234") {
-    //   window.alert("Selamat login anda sukses!");
-    //   navigate("/");
-    // } else {
-    //   username === "" && password === "";
-    //   alert("Enter your account to Login");
-    // }
+
+    if (!email || !password) {
+      setMessage("Email and password can't be empty");
+      setAlert(1);
+      return;
+    }
 
     setLoading(true);
     const inputData = new URLSearchParams();
     inputData.append("email", email);
     inputData.append("password", password);
 
-    // const response = await fetch("https://api-dummy.fahrul.id/auth/login", {
-    //   method: "POST",
-    //   body: inputData,
-    // });
-    fetch("https://localhost:8080/auth/login", {
+    fetch("http://localhost:8080/auth/login", {
       method: "POST",
       body: inputData,
     }).then((response) => {
       response.json().then((data) => {
         if (data.success) {
           const token = data.result.token;
+          setLoading(1);
+          console.log(token);
           dispatch(login(token));
           (async () => {
-            const response = await fetch("https://localhost:8080/profile", {
-              headers: {
-                Authorization: "Bearer " + token,
-              },
-            });
+            const response = await fetch(
+              "http://localhost:8080/profile/detailprofile",
+              {
+                headers: {
+                  Authorization: "Bearer " + token,
+                },
+              }
+            );
             const data = await response.json();
+            console.log(data, "token");
             dispatch(addProfile(data.result));
-            console.log(data);
-            navigate("/");
+            setTimeout(() => {
+              navigate("/");
+            }, 2000);
           })();
         } else {
-          window.alert(data.message);
+          // window.alert(data.message);
+          setLoading(1);
+          setMessage(data.message);
+          setAlert(1);
+          setLoading(0);
         }
       });
     });
-
-    // const input = await response.json();
-    // if (input.success) {
-    //   window.alert(input.message);
-    //   navigate("/");
-    //   // console.log("aha");
-    // } else {
-    //   window.alert(input.message);
-    // }
   }
 
-  let [pass, setPass] = React.useState("password");
   function revealPassword() {
-    if (pass === "password") {
-      setPass("test");
-    } else {
-      setPass("password");
-    }
+    setPass(pass === "password" ? "text" : "password");
   }
 
   return (
@@ -94,7 +89,7 @@ function Login() {
       <div className="flex w-full md:w-5/12 justify-center items-center ">
         <form
           onSubmit={processLogin}
-          className="flex max-w-xs w-full flex-col gap-[20px] "
+          className="flex max-w-xs w-full flex-col gap-[17px] "
         >
           <div className="flex flex-row items-center gap-[15px]">
             <FaTicket className="text-blue-600 w-9 h-9" />
@@ -104,6 +99,21 @@ function Login() {
           </div>
           <h2 className="font-semibold text-2xl text-[white]">Sign In</h2>
           <p className="text-[white]">Hi, Welcome back to Urticket!</p>
+          <div className="">
+            {alert ? (
+              <div className="h-12 flex-1 bg-red-400 flex items-center pl-4 justify-between rounded-[10px]">
+                {message ? <div>{message}</div> : ""}
+                <button
+                  onClick={() => setAlert(0)}
+                  className="h-12 w-12 font-bold"
+                >
+                  X
+                </button>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
           <div className="flex h-[55px] rounded-2xl border-neutral-500">
             <input
               className="w-full h-full px-6 text-sm bg-[white] box-border border rounded-2xl overflow-hidden outline-none "
@@ -138,17 +148,7 @@ function Login() {
               <FaEye />
             </button>
           </div> */}
-          <div>
-            <div className="text-right ">
-              <Link
-                to="/ForgotPassword"
-                href="user-authentication.html"
-                className="text-blue-500"
-              >
-                Forgot Password?
-              </Link>
-            </div>
-          </div>
+
           <div className="flex flex-col gap-[20px]">
             <button
               onSubmit={processLogin}
@@ -156,6 +156,26 @@ function Login() {
             >
               Sign In
             </button>
+            <div className="text-center">
+              <Link
+                to="/ForgotPassword"
+                href="user-authentication.html"
+                className="text-blue-500 text-[15px]"
+              >
+                Forgot Password?
+              </Link>
+            </div>
+            <div className="flex items-center mx-[8px] w-auto">
+              <div className="flex-grow border-t border-gray-300 "></div>
+              <span className="px-2 text-gray-200">or</span>
+              <div className="flex-grow border-t border-gray-300"></div>
+            </div>
+
+            <Link to="/Signup">
+              <button className=" border-none rounded-lg w-full h-[55px] text-white bg-[#3366ff]">
+                Sign Up
+              </button>
+            </Link>
           </div>
           <div className="mt-[20px] text-center text-[white] ">
             Or sign in with.
@@ -178,9 +198,9 @@ function Login() {
       </div>
       {loading ? (
         <div className="bg-slate-500/50 fixed top-0 left-0 flex items-center h-screen w-full">
-          <div className=" w-full h-screen flex items-center justify-center gap-[10px]">
-            <FaSpinner className="animate-spin " />
-            loading
+          <div className="w-full h-screen flex items-center justify-center gap-[10px]">
+            <FaSpinner className="animate-spin text-[50px]" />
+            <span className="text-[50px] font-bold">Loading...</span>
           </div>
         </div>
       ) : (

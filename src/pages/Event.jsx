@@ -1,35 +1,63 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavbarProfile from "../components/NavbarProfile.jsx";
-import PictureEvent from "../assets/img/picture1.png";
-import PictureEventMobile from "../assets/img/pic-event-mobile.png";
 import MapPin from "../assets/img/map-pin.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Attendee from "../components/Attendee.jsx";
 import { FaRegHeart } from "react-icons/fa";
 import Footer from "../components/Footer";
 import Clock from "../assets/img/clock.svg";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { addEvent } from "../redux/reducers/event.js";
+import axios from "axios";
 
 function Event() {
-  // const endpoint = "http://localhost:8080/event";
+  // const id = useParams().id;
+  // const endpoint = "http://localhost:8080/event" + id;
+  // const newEvent = useSelector((state) => state.event.dataEvent);
   // const dispatch = useDispatch();
+
+  // const [event, setEvent] = useState([]);
+  // console.log(event);
+
   // useEffect(() => {
   //   async () => {
   //     const data = await axios.get(endpoint);
   //     const resultData = data.data.result;
-  //     dispatch(addEvent(resultData));
+  //     setEvent(resultData.data.result);
   //   };
   // });
+
+  // yang harus
+  const id = useParams().id;
+  const newEvent = useSelector((state) => state.event.dataEvent);
+  const endpoint = "http://localhost:8080/event/" + id;
+  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  const [event, setEvent] = useState({});
+  console.log(event);
+  useEffect(() => {
+    (async () => {
+      const data = await axios.get(endpoint);
+      const resultData = data.data.result;
+      // console.log(resultData);
+      setEvent(resultData);
+      // console.log(endpoint);
+    })();
+  }, []);
+
+  function clickEvent(id) {
+    navigate("/event/section/" + id);
+  }
   // component
   return (
     <div>
       <NavbarProfile />
       <div className="md:mt-[150px] bg-[#e7c098] md:mx-[130px] md:rounded-[30px] ">
         <div className="w-full md:p-[80px]  md:flex hidden ">
-          <div className="flex flex-col items-center md:w-[50%] w-full h-full ">
+          <div className="flex flex-col items-center md:w-[50%] w-full h-full">
             <div>
-              <img src={PictureEvent} alt="" className="mt-[-20px] top-0" />
+              <img src={event.image} alt="" className="mt-[-20px] top-0" />
             </div>
             <div className="flex items-center text-center justify-center flex-row gap-[20px]">
               <div>
@@ -45,7 +73,7 @@ function Event() {
           <div className="flex flex-col md:w-[50%] gap-[20px] w-full ">
             <div className="flex flex-col gap-[30px] border-b-2 border-black w-full">
               <div className="font-bold color-[#373A42] text-2xl">
-                Sights & Sounds Exhibition
+                {event.title}
               </div>
               <div className="md:flex justify-between flex-row w-full">
                 <div className="md:flex flex flex-row gap-[20px] w-full ">
@@ -55,7 +83,7 @@ function Event() {
                   </div>
                   <div className="flex flex-row gap-[10px]">
                     <img src={Clock} alt="" />
-                    <div>Wed, 15 Nov, 4:00 PM</div>
+                    <div>{event.date}</div>
                   </div>
                 </div>
               </div>
@@ -71,10 +99,7 @@ function Event() {
                 <h1>Event Detail</h1>
               </div>
               <div className="flex flex-col gap-[15px]">
-                <div>
-                  After his controversial art exhibition "Tear and Consume" back
-                  in November 2018, in which guests were invited to tear up…
-                </div>
+                <div>{event.description}</div>
                 <div className="text-[#3366ff]">
                   <a href="#">Read More</a>
                 </div>
@@ -91,20 +116,25 @@ function Event() {
                   ></iframe>
                 </div>
               </div>
-              <Link to="/Booking">
-                <div className="flex justify-center items-center text-[#fff] bg-[#222] w-[100%] h-[55px] rounded-[15px] ">
-                  <button type="button">Buy Ticket</button>
-                </div>
-              </Link>
+              <div
+                className="flex justify-center items-center text-[#fff] bg-[#222] w-[100%] h-[55px] rounded-[15px] "
+                onClick={() => clickEvent(event.id)}
+              >
+                <button type="button">Buy Ticket</button>
+              </div>
             </div>
           </div>
         </div>
         <div className=" flex flex-col w-full md:hidden ">
           <div className="flex flex-col items-center w-full h-full">
-            <div className="w-full h-full relative mt-[-30px]">
-              <img src={PictureEventMobile} alt="" className="w-full h-full" />
+            <div className="w-full h-full absolute">
+              <img
+                src={event.image}
+                alt=""
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="justify-start flex-col gap-[20px] absolute  text-[#ffffff] ">
+            <div className="justify-start flex-col gap-[20px] relative  text-[#ffffff] ">
               <div className="hidden md:inline-block">
                 <Link to="/MyWhislist">
                   <FaRegHeart />
@@ -129,7 +159,7 @@ function Event() {
                     </div>
                     <div className="flex flex-row gap-[10px]">
                       <img src={Clock} alt="" />
-                      <div>Wed, 15 Nov, 4:00 PM</div>
+                      <div>{event.date}</div>
                     </div>
                   </div>
                 </div>
@@ -147,10 +177,7 @@ function Event() {
               <h1>Event Detail</h1>
             </div>
             <div className="flex flex-col gap-[15px]">
-              <div>
-                After his controversial art exhibition "Tear and Consume" back
-                in November 2018, in which guests were invited to tear up…
-              </div>
+              <div>{event.description}</div>
               <div className="text-[#3366ff]">
                 <a href="#">Read More</a>
               </div>
@@ -167,13 +194,14 @@ function Event() {
                 ></iframe>
               </div>
             </div>
-            <Link to="/Booking">
-              <div className="flex justify-center items-center text-[white] bg-[#222] w-[100%] h-[55px] rounded-[15px] mb-[20px]">
-                <button type="button" className="">
-                  Buy Ticket
-                </button>
-              </div>
-            </Link>
+            <div
+              className="flex justify-center items-center text-[white] bg-[#222] w-[100%] h-[55px] rounded-[15px] mb-[20px]"
+              onClick={() => clickEvent(event.id)}
+            >
+              <button type="button" className="">
+                Buy Ticket
+              </button>
+            </div>
           </div>
         </div>
       </div>

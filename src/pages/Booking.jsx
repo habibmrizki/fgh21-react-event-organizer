@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SeatMap from "../assets/img/Denah Tempat Duduk.png";
 import SeatMap2 from "../assets/img/seats-2.png";
 import Short from "../assets/img/shorting.png";
@@ -8,10 +8,30 @@ import SeatOrange from "../assets/img/pic-section-orange.png";
 import { Link } from "react-router-dom";
 import NavbarProfile from "../components/NavbarProfile";
 import Footer from "../components/Footer";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 function Booking() {
   // component
+  const id = useParams().id;
+  const newEvent = useSelector((state) => state.event.dataEvent);
+  // const [book, setBook] = React.useState([]);
+  const endpoint = "http://localhost:8080/event/" + id;
+  // const dispatch = useDispatch();
+  const [booking, setBooking] = useState({});
+  // console.log(Booking);
+  useEffect(() => {
+    (async () => {
+      const data = await axios.get(endpoint);
+      const resultData = data.data.result;
+      // console.log(resultData);
+      setBooking(resultData);
+      // console.log(endpoint);
+    })();
+  }, []);
 
+  console.log(booking);
   let [purple, setPurple] = React.useState(0);
   function seatPurpleMinus() {
     if (purple <= 0) {
@@ -59,19 +79,34 @@ function Booking() {
       setOrange(orange + 1);
     }
   }
+
+  let ticket = [];
+  if (purple > 0) {
+    ticket.push(`REG (${purple})`);
+  }
+  if (red > 0) {
+    ticket.push(`VIP (${red})`);
+  }
+  if (orange > 0) {
+    ticket.push(`VVIP (${orange})`);
+  }
+
+  let dataTicket = "";
+  ticket.length > 0 ? (dataTicket = ticket.join(", ")) : (dataTicket = "-");
+
   return (
     <div>
       <NavbarProfile />
       <div className="flex md:mt-[150px] bg-[#e7c098] md:mx-[120px] md:rounded-[30px] flex-col md:flex-row items-start justify-center  p-[30px]">
         <div className="md:flex md:justify-center md:items-center md:w-[50%] w-[100%] mt-[60px] hidden ">
-          <img src={SeatMap} alt="" className="" />
+          <img src={booking.image} alt="" className="" />
         </div>
         <div className="md:hidden flex justify-center items-center w-full">
-          <img src={SeatMap2} alt="" />
+          <img src={booking.image} alt="" />
         </div>
         <div className="flex flex-col mt-[35px] mr-[50px] md:w-[50%] w-full h-full">
           <div className="flex justify-between items-center">
-            <div className="text-[20px] text-[#373A42]">Tickets</div>
+            <div className="text-[20px] text-[#373A42]">{booking.title}</div>
             <div className="flex flex-row gap-[15px] items-center justify-center">
               <div className="text-[#FC1055] font-bold text-[14px]">
                 By Price
@@ -186,23 +221,25 @@ function Booking() {
           <div className="flex flex-col">
             <div className="flex justify-between">
               <div>Ticket Section</div>
-              <div className="text-[#3366ff]">
-                {" "}
-                {purple === 0 && red === 0 && orange === 0
-                  ? "-"
-                  : `REG${" " + purple}, ` +
-                    `VIP${" " + red}, ` +
-                    `VVIP${" " + orange}`}
+              <div className="text-[#3366ff] flex items-center">
+                {dataTicket}
               </div>
             </div>
             <div className="flex justify-between">
               <div>Quantity</div>
-              <div className="text-[#3366ff]">{purple + red + orange}</div>
+              <div className="text-[#3366ff]">
+                {" "}
+                {purple === 0 && red === 0 && orange === 0
+                  ? "-"
+                  : purple + red + orange}
+              </div>
             </div>
             <div className="flex justify-between">
               <div>Total Payment</div>
               <div className="text-[#3366ff]">
-                ${purple * 15 + red * 35 + orange * 50}
+                {purple === 0 && red === 0 && orange === 0
+                  ? "-"
+                  : "$" + (purple * 15 + red * 35 + orange * 50)}
               </div>
             </div>
           </div>

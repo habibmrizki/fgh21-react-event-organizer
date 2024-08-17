@@ -29,14 +29,11 @@ const arrayRouter = [
     element: <Home />,
   },
   {
-    path: "/Event",
+    path: "/event/:id",
     element: <Event />,
   },
   {
-    path: "events/:id",
-  },
-  {
-    path: "/Booking",
+    path: "/event/section/:id",
     element: <Booking />,
   },
   {
