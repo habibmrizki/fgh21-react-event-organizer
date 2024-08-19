@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaTicket } from "react-icons/fa6";
+import { useParams } from "react-router-dom";
 function App() {
   // component
+  const id = useParams().id;
   const [navbar, setNavbar] = React.useState(true);
   function buttonMenu() {
     if (navbar === true) {
@@ -16,6 +18,20 @@ function App() {
 
   const token = useSelector((state) => state.auth.form);
   const profile = useSelector((state) => state.profile.data);
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch("https://localhost:8080/profile/" + id, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      const data = await response.json();
+      const newProfile = data.results;
+      console.log(newProfile);
+      setProfiles(newProfile);
+    })();
+  }, [id]);
 
   return (
     <nav className="flex justify-between items-center bg-[#222] py-[1.4rem] px-[5%] inset-x-0 top-0 font-bold  md:w-full gap-[28px] md:gap-[0] flex-col md:flex-row">
@@ -73,7 +89,7 @@ function App() {
               />
             </button>
             <button className="text-[#fff] font-semibold text-sm">
-              {profile.name}
+              {profile.fullName}
             </button>
           </div>
         </Link>

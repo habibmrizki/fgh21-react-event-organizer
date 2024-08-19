@@ -11,7 +11,7 @@ import Logout from "../assets/img/logout.png";
 // import ChoosePic from "../assets/img/profile-picture.png";
 import NavbarProfile from "../components/NavbarProfile.jsx";
 import Footer from "../components/Footer.jsx";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { FaPen } from "react-icons/fa";
 import { FaWallet } from "react-icons/fa";
@@ -26,9 +26,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Profile() {
   // component
+  const id = useParams().id;
   const dispatch = useDispatch();
-  const [profession, setprofession] = useState([]);
-  const [nationality, setNationality] = useState([]);
+  const [profiles, setProfiles] = useState([]);
+  // const [nationality, setNationality] = useState([]);
   function out() {
     dispatch(logout(null));
     dispatch(removeProfile(null));
@@ -36,44 +37,42 @@ function Profile() {
 
   const token = useSelector((state) => state.auth.form.token);
   const profile = useSelector((state) => state.profile.data);
-  const today = new Date();
-  const numberOfDaysToAdd = 0;
-  const date = today.setDate(today.getDate() + numberOfDaysToAdd);
-  const defaultValue = new Date(date).toISOString().split("T")[0];
+  console.log(profile);
+  // const today = new Date();
+  // const numberOfDaysToAdd = 0;
+  // const date = today.setDate(today.getDate() + numberOfDaysToAdd);
+  // const defaultValue = new Date(date).toISOString().split("T")[0];
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(
-        "https://wsw6zh-8888.csb.app/profile/professions",
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
+      const response = await fetch("https://localhost:8080/profile/" + id, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
       const data = await response.json();
-      const newProfession = data.results;
-      console.log(newProfession);
-      setprofession(newProfession);
+      const newProfile = data.results;
+      console.log(newProfile);
+      setProfiles(newProfile);
     })();
-  }, []);
+  }, [id]);
 
-  useEffect(() => {
-    (async () => {
-      const response = await fetch(
-        "https://wsw6zh-8888.csb.app/profile/nationalities",
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
-      const region = await response.json();
-      const newNationality = region.results;
-      console.log(newNationality);
-      setNationality(newNationality);
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const response = await fetch(
+  //       "https://localhost:8080/profile/nationalities",
+  //       {
+  //         headers: {
+  //           Authorization: "Bearer " + token,
+  //         },
+  //       }
+  //     );
+  //     const region = await response.json();
+  //     const newNationality = region.results;
+  //     console.log(newNationality);
+  //     setNationality(newNationality);
+  //   })();
+  // }, []);
 
   return (
     <div>
@@ -90,10 +89,8 @@ function Profile() {
                 />
               </div>
               <div>
-                <div className="text-[14px] font-bold">{profile.name}</div>
-                <div className="text-[14px] text-[#373a42b]">
-                  {profile.profession}
-                </div>
+                <div className="text-[14px] font-bold">{profile.fullName}</div>
+                <div className="text-[14px] text-[#373a42b]">Bos Kilang</div>
               </div>
             </div>
             <div className="flex flex-col gap-[30px] font-bold text-[16px] ">
@@ -197,7 +194,8 @@ function Profile() {
                   type="text"
                   name=""
                   id="name"
-                  placeholder={profile.name}
+                  placeholder={profile.fullName}
+                  defaultValue={profile.fullName}
                   className="rounded-xl border pl-[25px] w-[65%] h-[50px] outline-none"
                 />
               </div>
@@ -209,7 +207,7 @@ function Profile() {
                   type="text"
                   name="username"
                   id="username"
-                  placeholder={profile.username}
+                  placeholder={profiles.username}
                   className="rounded-xl border pl-[25px] w-[65%] h-[50px] outline-none "
                 />
               </div>
@@ -222,6 +220,7 @@ function Profile() {
                   name="email"
                   id="email"
                   placeholder={profile.email}
+                  defaultValue={profile.email}
                   className="rounded-xl border pl-[25px] w-[65%] h-[50px] outline-none"
                 />
               </div>
@@ -233,7 +232,7 @@ function Profile() {
                   type="text"
                   name="phoneNumber"
                   id="phoneNumber"
-                  placeholder={profile.phoneNumber}
+                  // placeholder={profile.phoneNumber}
                   className="rounded-xl border pl-[25px] w-[65%] h-[50px] outline-none"
                 />
               </div>
@@ -263,11 +262,11 @@ function Profile() {
                   id="Entrepreneur"
                   className="rounded-xl border pl-[25px] w-[65%] h-[50px] outline-none"
                 >
-                  {profession.map((data) => {
+                  {/* {profession.map((data) => {
                     return (
                       <option selected={profile.profession}>{data.name}</option>
                     );
-                  })}
+                  })} */}
                 </select>
               </div>
               <div className="flex justify-between items-center">
@@ -279,13 +278,13 @@ function Profile() {
                   id="Entrepreneur"
                   className="rounded-xl border pl-[25px] w-[65%] h-[50px] outline-none"
                 >
-                  {nationality.map((data) => {
+                  {/* {nationality.map((data) => {
                     return (
                       <option selected={profile.Nationalities}>
                         {data.name}
                       </option>
                     );
-                  })}
+                  })} */}
                 </select>
               </div>
 
@@ -297,9 +296,9 @@ function Profile() {
                   type="date"
                   name="Nationality"
                   id="Nationality"
-                  placeholder={profile.birthdayDate}
+                  // placeholder={profile.birthdayDate}
                   className="rounded-xl border pl-[25px] w-[65%] h-[50px] outline-none"
-                  defaultValue={defaultValue}
+                  // defaultValue={defaultValue}
                 />
               </div>
 
@@ -314,7 +313,7 @@ function Profile() {
                 <div className="flex flex-col text-center gap-[60px] w-full items-center">
                   <div className="rounded-full">
                     <img
-                      src={profile.picture}
+                      // src={profile.picture}
                       alt=""
                       className="rounded-full w-[200px] h-[200px]"
                     />

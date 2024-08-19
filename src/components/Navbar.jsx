@@ -1,17 +1,12 @@
-import React from "react";
-// import logoWetick from "../assets/img/logo-wetick.png";
-import LogoBlurWetick from "../assets/img/logo-blur-wetick.png";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import SignUp from "../pages/SignUp";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useSelector } from "react-redux";
-import Avatar from "../assets/img/Avatar.svg";
-import profile from "../redux/reducers/profile";
-import { TiTicket } from "react-icons/ti";
 import { FaTicket } from "react-icons/fa6";
-
+import { useParams } from "react-router-dom";
 function navbar() {
   // component
+  const id = useParams().id;
   const [navbar, setNavbar] = React.useState(true);
   function buttonMenu() {
     if (navbar === true) {
@@ -20,9 +15,23 @@ function navbar() {
       setNavbar(true);
     }
   }
-  const token = useSelector((state) => state.auth.form);
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch("https://localhost:8080/profile/" + id, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      const data = await response.json();
+      const newProfile = data.results;
+      console.log(newProfile);
+      setProfiles(newProfile);
+    })();
+  }, [id]);
+
+  const token = useSelector((state) => state.auth.form.token);
   const profile = useSelector((state) => state.profile.data);
-  console.log(token !== null);
   return (
     <nav className="w-full flex justify-between md:flex-row flex-col items-center fixed z-10 bg-[#222] py-[1.4rem] px-[5%] inset-x-0 top-0 font-semibold md:w-full gap-[15px] md:gap-[0] ">
       <div className="flex justify-between items-center md:w-auto w-full">
@@ -33,7 +42,7 @@ function navbar() {
           >
             <FaTicket className="text-blue-600" />
             <div className="text-[#b6895b]">
-              Kenanga<span className="text-[#fff]">senja</span>
+              Kenangan<span className="text-[#fff]">senja</span>
             </div>
           </a>
         </div>
@@ -87,8 +96,8 @@ function navbar() {
         </div>
       </div> */}
       {token !== null ? (
-        <Link to="/Profile" className="flex items-center gap-2 ">
-          <div className="flex items-center gap-4 justify-center ">
+        <div className="flex items-center gap-4 justify-center ">
+          <Link to="/Profile" className="flex items-center gap-2 ">
             <button className="h-[55px] w-[55px] flex justify-center items-center rounded-full overflow-hidden border-4 border-[#b6895b]">
               <img
                 src={profile.picture}
@@ -97,25 +106,23 @@ function navbar() {
               />
             </button>
             <button className="text-[#fff] font-semibold text-sm">
-              {profile.name}
+              {profile.fullName}
             </button>
-          </div>
-        </Link>
+          </Link>
+        </div>
       ) : (
-        <Link to="/Profile" className="flex items-center gap-2 ">
-          <div className="flex flex-col gap-3 md:flex-row md:gap-0">
-            <Link to="/login">
-              <button className="h-10 w-36 font-bold text-[#373A42] ">
-                Log in
-              </button>
-            </Link>
-            <Link to="/SignUp">
-              <button className="bg-[#3366FF] h-10  w-36 text-white rounded-xl font-bold">
-                Sign up
-              </button>
-            </Link>
-          </div>
-        </Link>
+        <div className="flex flex-col gap-3 md:flex-row md:gap-0">
+          <Link to="/login">
+            <button className="h-10 w-36 font-bold text-[#373A42] ">
+              Log in
+            </button>
+          </Link>
+          <Link to="/SignUp">
+            <button className="bg-[#3366FF] h-10  w-36 text-white rounded-xl font-bold">
+              Sign up
+            </button>
+          </Link>
+        </div>
       )}
     </nav>
   );

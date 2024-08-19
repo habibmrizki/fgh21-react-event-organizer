@@ -27,6 +27,18 @@ function SignUp() {
       return;
     }
 
+    if (password.length < 8) {
+      setMessage("Password must be at least 8 characters long");
+      setAlert(1);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setMessage("Password and Confirm Password do not match");
+      setAlert(1);
+      return;
+    }
+
     setLoading(true);
 
     const inputData = new URLSearchParams();
@@ -46,10 +58,10 @@ function SignUp() {
       setMessage(data.message);
       setTimeout(() => {
         navigate("/Login");
-      }, 2000);
+      }, 1000);
     } else {
       setLoading(false);
-      setMessage(data.message);
+      setMessage(data.essage);
       setAlert(1);
     }
   }

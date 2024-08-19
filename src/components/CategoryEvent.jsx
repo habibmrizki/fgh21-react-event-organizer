@@ -34,7 +34,7 @@ function CategoryEvent() {
               <img
                 src={data.image}
                 alt=""
-                className="w-full h-[55%]  object-fill rounded-t-[18px] "
+                className="w-full h-[55%]  object-cover rounded-t-[18px] "
               />
               <div className="flex flex-col text-[left] gap-[10px] ml-[25px]">
                 <div className="text-[#fff] text-[18px] gap-[20px] ">

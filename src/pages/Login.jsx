@@ -51,20 +51,17 @@ function Login() {
           console.log(token);
           dispatch(login(token));
           (async () => {
-            const response = await fetch(
-              "http://localhost:8080/profile/detailprofile",
-              {
-                headers: {
-                  Authorization: "Bearer " + token,
-                },
-              }
-            );
+            const response = await fetch("http://localhost:8080/profile/", {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            });
             const data = await response.json();
             console.log(data, "token");
             dispatch(addProfile(data.result));
             setTimeout(() => {
               navigate("/");
-            }, 2000);
+            }, 1000);
           })();
         } else {
           // window.alert(data.message);

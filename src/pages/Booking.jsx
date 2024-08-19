@@ -5,21 +5,24 @@ import Short from "../assets/img/shorting.png";
 import SeatPurple from "../assets/img/pic-section-purple.png";
 import SeatRed from "../assets/img/pic-section-red.png";
 import SeatOrange from "../assets/img/pic-section-orange.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import NavbarProfile from "../components/NavbarProfile";
 import Footer from "../components/Footer";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { FaSpinner } from "react-icons/fa6";
 
 function Booking() {
   // component
-  const id = useParams().id;
+  const { id } = useParams();
   const newEvent = useSelector((state) => state.event.dataEvent);
   // const [book, setBook] = React.useState([]);
   const endpoint = "http://localhost:8080/event/" + id;
   // const dispatch = useDispatch();
   const [booking, setBooking] = useState({});
+  const [loading, setLoading] = useState(0);
+  const navigate = useNavigate();
   // console.log(Booking);
   useEffect(() => {
     (async () => {
@@ -31,7 +34,19 @@ function Booking() {
     })();
   }, []);
 
-  console.log(booking);
+  const [section, setSection] = useState({});
+  const endpoint2 = "http://localhost:8080/event/section/" + id;
+  useEffect(() => {
+    (async () => {
+      const dataSection = await axios.get(endpoint2);
+      const resultSection = dataSection.data.result;
+      console.log(resultSection);
+      setSection(resultSection);
+      // console.log(section);
+    })();
+  }, []);
+
+  // console.log(booking);
   let [purple, setPurple] = React.useState(0);
   function seatPurpleMinus() {
     if (purple <= 0) {
@@ -41,7 +56,7 @@ function Booking() {
     }
   }
   function seatPurplePlus() {
-    if (purple >= 10) {
+    if (purple > 9999) {
       window.alert("disii");
     } else {
       setPurple(purple + 1);
@@ -57,7 +72,7 @@ function Booking() {
     }
   }
   function seatRedPlus() {
-    if (red >= 10) {
+    if (red > 9999) {
       window.alert("disii");
     } else {
       seatRed(red + 1);
@@ -73,7 +88,7 @@ function Booking() {
     }
   }
   function seatOrangePlus() {
-    if (orange >= 10) {
+    if (orange > 9999) {
       window.alert("disii");
     } else {
       setOrange(orange + 1);
@@ -94,19 +109,26 @@ function Booking() {
   let dataTicket = "";
   ticket.length > 0 ? (dataTicket = ticket.join(", ")) : (dataTicket = "-");
 
+  function clickEvent() {
+    setTimeout(() => {
+      navigate("/Payment");
+    }, 1000);
+    setLoading(1);
+  }
+
   return (
     <div>
       <NavbarProfile />
       <div className="flex md:mt-[150px] bg-[#e7c098] md:mx-[120px] md:rounded-[30px] flex-col md:flex-row items-start justify-center  p-[30px]">
         <div className="md:flex md:justify-center md:items-center md:w-[50%] w-[100%] mt-[60px] hidden ">
-          <img src={booking.image} alt="" className="" />
+          <img src={booking.image} alt="" className=" w-[80%] rounded-[20px]" />
         </div>
-        <div className="md:hidden flex justify-center items-center w-full">
-          <img src={booking.image} alt="" />
+        <div className="md:hidden flex justify-center items-center">
+          <img src={booking.image} alt="" className=" rounded-[20px]" />
         </div>
         <div className="flex flex-col mt-[35px] mr-[50px] md:w-[50%] w-full h-full">
           <div className="flex justify-between items-center">
-            <div className="text-[20px] text-[#373A42]">{booking.title}</div>
+            <div className="text-[20px] text-[#010101]">{booking.title}</div>
             <div className="flex flex-row gap-[15px] items-center justify-center">
               <div className="text-[#FC1055] font-bold text-[14px]">
                 By Price
@@ -123,7 +145,7 @@ function Booking() {
               </div>
               <div className="flex flex-col w-full ">
                 <div className="flex flex-row justify-between w-full">
-                  <div>SECTION REG, ROW 1</div>
+                  <div>section vvip</div>
                   <div>$15</div>
                 </div>
                 <div className="flex flex-row justify-between w-full">
@@ -243,17 +265,25 @@ function Booking() {
               </div>
             </div>
           </div>
-          <div className=" w-full  ">
-            <Link to="/Payment">
-              <button
-                type="button"
-                className="bg-[#222] text-[white] w-full h-[55px] rounded-[15px] mt-[35px] "
-              >
-                Checkout
-              </button>
-            </Link>
+          <div className="w-full" onClick={clickEvent}>
+            <button
+              type="button"
+              className="bg-[#222] text-[white] w-full h-[55px] rounded-[15px] mt-[35px] "
+            >
+              Checkout
+            </button>
           </div>
         </div>
+        {loading ? (
+          <div className="bg-slate-500/50 fixed top-0 left-0 flex items-center h-screen w-full">
+            <div className="w-full h-screen flex items-center justify-center gap-[10px]">
+              <FaSpinner className="animate-spin text-[50px]" />
+              <span className="text-[50px] font-bold">Loading...</span>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <Footer />
     </div>
