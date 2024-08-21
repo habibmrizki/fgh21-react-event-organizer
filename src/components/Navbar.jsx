@@ -95,7 +95,20 @@ function navbar() {
           </button>
         </div>
       </div> */}
-      {token !== null ? (
+      {token === null ? (
+        <div className="flex flex-col gap-3 md:flex-row md:gap-0">
+          <Link to="/login">
+            <button className="h-10 w-36 font-bold text-[#373A42] ">
+              Log in
+            </button>
+          </Link>
+          <Link to="/SignUp">
+            <button className="bg-[#3366FF] h-10  w-36 text-white rounded-xl font-bold">
+              Sign up
+            </button>
+          </Link>
+        </div>
+      ) : (
         <div className="flex items-center gap-4 justify-center ">
           <Link to="/Profile" className="flex items-center gap-2 ">
             <button className="h-[55px] w-[55px] flex justify-center items-center rounded-full overflow-hidden border-4 border-[#b6895b]">
@@ -107,19 +120,6 @@ function navbar() {
             </button>
             <button className="text-[#fff] font-semibold text-sm">
               {profile.fullName}
-            </button>
-          </Link>
-        </div>
-      ) : (
-        <div className="flex flex-col gap-3 md:flex-row md:gap-0">
-          <Link to="/login">
-            <button className="h-10 w-36 font-bold text-[#373A42] ">
-              Log in
-            </button>
-          </Link>
-          <Link to="/SignUp">
-            <button className="bg-[#3366FF] h-10  w-36 text-white rounded-xl font-bold">
-              Sign up
             </button>
           </Link>
         </div>

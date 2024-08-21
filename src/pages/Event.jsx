@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { addEvent } from "../redux/reducers/event.js";
 import axios from "axios";
 import { FaSpinner } from "react-icons/fa6";
+import { ScrollRestoration } from "react-router-dom";
 
 function Event() {
   // const id = useParams().id;
@@ -239,6 +240,7 @@ function Event() {
         )}
       </div>
       <Footer />
+      <ScrollRestoration />
     </div>
   );
 }

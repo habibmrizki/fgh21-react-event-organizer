@@ -22,6 +22,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
 import { FaPlusCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import { ScrollRestoration } from "react-router-dom";
 
 function ChangePasswordPage() {
   // component
@@ -190,6 +191,7 @@ function ChangePasswordPage() {
         </div>
       </div>
       <Footer />
+      <ScrollRestoration />
     </div>
   );
 }

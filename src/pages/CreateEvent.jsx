@@ -21,6 +21,7 @@ import { FaBook } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
+import { ScrollRestoration } from "react-router-dom";
 
 function CreateEvent() {
   // component
@@ -389,6 +390,7 @@ function CreateEvent() {
           </div>
         </div>
       </div>
+      <ScrollRestoration />
     </div>
   );
 }

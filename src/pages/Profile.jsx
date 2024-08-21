@@ -23,6 +23,7 @@ import { FaPlusCircle } from "react-icons/fa";
 import { logout } from "../redux/reducers/auth.js";
 import { removeProfile } from "../redux/reducers/profile.js";
 import { useDispatch, useSelector } from "react-redux";
+import { ScrollRestoration } from "react-router-dom";
 
 function Profile() {
   // component
@@ -338,6 +339,7 @@ function Profile() {
       {/* <div className=" fixed bg-gray-500 w-full top-0 left-0 h-screen ">
         <div>loading</div>
       </div> */}
+      <ScrollRestoration />
     </div>
   );
 }

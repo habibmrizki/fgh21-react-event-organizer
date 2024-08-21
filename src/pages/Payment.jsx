@@ -8,7 +8,7 @@ import { FaPlus } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import Navbar from "../components/NavbarProfile";
 import Footer from "../components/Footer";
-
+import { ScrollRestoration } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa6";
 
 function Payment() {
@@ -133,6 +133,7 @@ function Payment() {
         </div>
       </div>
       <Footer />
+      <ScrollRestoration />
     </div>
   );
 }

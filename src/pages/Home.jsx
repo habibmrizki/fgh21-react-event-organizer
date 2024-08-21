@@ -9,6 +9,7 @@ import DateEvent from "../components/DateEvent";
 import CategoryEvent from "../components/CategoryEvent";
 import TextCategoryEvent from "../components/TextCategoryEvent";
 import ImgHomeTop from "../components/ImgHomeTop";
+import { ScrollRestoration } from "react-router-dom";
 
 function Home() {
   return (
@@ -23,6 +24,7 @@ function Home() {
       <CategoryEvent />
       <Sponsorship />
       <Footer />
+      <ScrollRestoration />
     </div>
   );
 }

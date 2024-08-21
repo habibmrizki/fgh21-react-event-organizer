@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { FaSpinner } from "react-icons/fa6";
+import { ScrollRestoration } from "react-router-dom";
 
 function Booking() {
   // component
@@ -286,6 +287,7 @@ function Booking() {
         )}
       </div>
       <Footer />
+      <ScrollRestoration />
     </div>
   );
 }

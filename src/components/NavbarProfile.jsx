@@ -16,7 +16,7 @@ function App() {
     }
   }
 
-  const token = useSelector((state) => state.auth.form);
+  const token = useSelector((state) => state.auth.form.token);
   const profile = useSelector((state) => state.profile.data);
 
   useEffect(() => {
